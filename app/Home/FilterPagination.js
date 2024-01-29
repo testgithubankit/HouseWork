@@ -20,6 +20,7 @@ import Modal from 'react-modal';
 async function fetchDoctors(page, perPage) {
     const response = await fetch(`https://api.coc.houseworksinc.co/api/v1/doctors?page=${page}&per_page=${perPage}`)
     const data = await response.json();
+    console.log(data);
     return data;
 }
 
@@ -359,7 +360,8 @@ export default function ApiData() {
                   {/* HW Filter Top Right */}
                   <div className='flex items-center gap-5'>
                     <div className=''>
-                      <button onClick={() => setShowCheckboxes(true)} active={selectedItems.length !== 0}>
+                      <button onClick={() => setShowCheckboxes(true)} active={0}>
+                      {/* <button onClick={() => setShowCheckboxes(true)} active={selectedItems.length !== 0}> */}
                         Compare
                       </button>
                     </div>
