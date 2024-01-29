@@ -267,7 +267,7 @@ const HWSearch = () => {
   const [selectedTab, setSelectedTab] = useState(1);
   const [showInput, setShowInput] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('Transplant');
+  const [selectedOption, setSelectedOption] = useState('transplant');
   const [selectedMutiple, setselectedMutiple] = useState('Doctor');
   const [selectedZip, setSelectedZip] = useState();
 
@@ -282,7 +282,7 @@ const HWSearch = () => {
   const [apiDataLoaded, setApiDataLoaded] = useState(false);
 
 
-  const [type, setType] = useState('');
+  const [type, setType] = useState('transplant');
   const [searchFor, setSearchFor] = useState('');
   const [organ, setOrgan] = useState(''); 
   const [error, setError] = useState('');
@@ -290,6 +290,7 @@ const HWSearch = () => {
 
 
   const handleTypeSelection = (selectedType) => {
+    handleOptionClick(selectedType);
     // You can perform any logic here based on the selected type
     console.log('Selected Type:', selectedType);
      setType(selectedType);
@@ -298,6 +299,7 @@ const HWSearch = () => {
   };
 
   const handleOrganSelection = (selectedOrgan) => {
+    // setSelectImage(selectedOrgan);
     console.log('Selected Organ:', selectedOrgan);
     setOrgan(selectedOrgan);
 
@@ -316,27 +318,6 @@ const HWSearch = () => {
     return [];
   };
 
-  // useEffect(() => {
-  //   const fetchApiData = async () => {
-  //     let apiUrl = '';
-  //     if (selectedMutiple === 'Hospital') {
-  //       apiUrl = 'https://api.coc.houseworksinc.co/api/v1/hospitals/zip_codes';
-  //     }
-
-  //     try {
-  //       const response = await fetch(apiUrl);
-  //       if (!response.ok) {
-  //         throw new Error('Failed to fetch data.');
-  //       }
-  //       const data = await response.json();
-  //       setZipCodes(data);
-  //     } catch (error) {
-  //       console.error('Error fetching zip codes:', error);
-  //     }
-  //   };
-
-  //   fetchApiData();
-  // }, [selectedMutiple]);
 
   useEffect(() => {
     const fetchApiData = async () => {
@@ -542,22 +523,23 @@ const HWSearch = () => {
             <div 
               className='px-5 py-3.5 cursor-pointer rounded-lg text-center text-sm'
               style={{
-                border: selectedOption === 'Transplant' ? '1px solid #C8ADFF' : '1px solid #C5CEE0',
-                color: selectedOption === 'Transplant' ? '#6E2FEB' : 'rgb(16 20 28 / 80%)',
-                backgroundColor: selectedOption === 'Transplant' ? '#F5F0FF' : '#ffff'
+                border: selectedOption === 'transplant' ? '1px solid #C8ADFF' : '1px solid #C5CEE0',
+                color: selectedOption === 'transplant' ? '#6E2FEB' : 'rgb(16 20 28 / 80%)',
+                backgroundColor: selectedOption === 'transplant' ? '#F5F0FF' : '#ffff'
               }}
-              onClick={() => handleOptionClick('Transplant')}
+              onClick={() => handleTypeSelection('transplant')}
+              
             >
               Transplant
             </div>
             <div
               className='px-5 py-3.5 cursor-pointer rounded-lg text-center text-sm'
               style={{
-                border: selectedOption === 'Cancer' ? '1px solid #C8ADFF' : '1px solid #C5CEE0',
-                color: selectedOption === 'Transplant' ? 'rgb(16 20 28 / 80%)' : '#6E2FEB',
-                backgroundColor: selectedOption === 'Cancer' ? '#F5F0FF' : '#ffff'
+                border: selectedOption === 'oncology' ? '1px solid #C8ADFF' : '1px solid #C5CEE0',
+                color: selectedOption === 'transplant' ? 'rgb(16 20 28 / 80%)' : '#6E2FEB',
+                backgroundColor: selectedOption === 'oncology' ? '#F5F0FF' : '#ffff'
               }}
-              onClick={() => handleOptionClick('Cancer')}
+              onClick={() => handleTypeSelection('oncology')}
             >
               Cancer
             </div>
@@ -565,14 +547,14 @@ const HWSearch = () => {
 
           {/* //==================================================== */}
 
-          <div className='sm:flex grid grid-cols-2 place-content-stretch gap-4 my-2 max-w-[270px] items-center'>
+          {/* <div className='sm:flex grid grid-cols-2 place-content-stretch gap-4 my-2 max-w-[270px] items-center'>
           <button onClick={() => handleTypeSelection('transplant')}>
             Transplant
           </button>
           <button onClick={() => handleTypeSelection('oncology')}>
             Oncology
           </button>
-      </div>
+      </div> */}
 
           <div className='my-2 flex-wrap'>
             <h3 className='mt-4 mb-2 font-bold text-[#101426] text-base'>Searching For</h3>
@@ -670,13 +652,14 @@ const HWSearch = () => {
             <div className='flex'>
               {selectedOption === 'Cancer' || selectedMutiple === 'Hospital' || (
                 <><div className='transplantBox mb-2'>
-                    <h3 className='font-bold text-[#101426] text-base mt-2'>Organ</h3>
+                    <h3 className='font-bold text-[#101426] text-base mt-2 '>Organ</h3>
+                    <br />
                     {/* --------------------- */}
                     {/* Render 4 boxes for Transplant */}
-                    <FilterBox title="" />
+                    {/* <FilterBox title="" /> */}
                   </div>
                   <div>
-         <div className='mt-4 text-center'>
+         <div className='mt-4 text-center' style={{marginTop:'50px', marginLeft:'-50px' }}>
         <div className='flex flex-wrap gap-4 items-baseline'>
           {getOrganOptions().map((option) => (
             <button
@@ -684,6 +667,8 @@ const HWSearch = () => {
               border: selectImage === 'Kidney' ? '1px solid #C8ADFF' : '1px solid #C5CEE0',
               color: selectImage === 'Kidney' ? '#6E2FEB' : '#101426',
               backgroundColor: selectImage === 'Kidney' ? '#F5F0FF' : 'white',
+              padding:'10px',
+              borderRadius:'10px'
             }}
               key={option}
               onClick={() => handleOrganSelection(option)}
@@ -727,15 +712,15 @@ const HWSearch = () => {
               {selectedOption === 'Transplant' || selectedMutiple === 'Hospital' || (
                 <div className='cancerBox mb-2'>
                   {/* Render 10 boxes for Cancer */}
-                  <h3 className='font-bold text-[#101426] text-base mt-2'>Organ</h3>
-                  <Filter title="" />
+                  {/* <h3 className='font-bold text-[#101426] text-base mt-2'>Organ</h3> */}
+                  {/* <Filter title="" /> */}
                 </div>
               )}
             </div>
           ) : (
             <div className='flex flex-wrap'>
               <div className='w-[50%] p-4'>
-                <FilterBox title="" />
+                {/* <FilterBox title="" /> */}
               </div>
             </div>
           )}
