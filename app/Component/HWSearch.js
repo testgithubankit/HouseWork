@@ -462,7 +462,7 @@ const HWSearch = () => {
   const [searchFor, setSearchFor] = useState("");
   const [organ, setOrgan] = useState("");
   const [error, setError] = useState("");
-  const [selectImage, setSelectImage] = useState("Kidney");
+  const [selectImage, setSelectImage] = useState("kidney");
 
   const handleTypeSelection = (selectedType) => {
     handleOptionClick(selectedType);
@@ -477,8 +477,14 @@ const HWSearch = () => {
     // router.push(`/searchView?type=${selectedType}`);
   };
 
+  useEffect(() => {
+    // Additional logic to handle the default selection if needed
+    handleOrganSelection("kidney");
+  }, []);
+
   const handleOrganSelection = (selectedOrgan) => {
     // setSelectImage(selectedOrgan);
+    setSelectImage(selectedOrgan);
     console.log("Selected Organ:", selectedOrgan);
     setOrgan(selectedOrgan);
 
@@ -490,7 +496,7 @@ const HWSearch = () => {
     console.log("inside get ", organ);
 
     if (type === "transplant") {
-      return ["lungs", "kidney", "liver", "pancreas"];
+      return ["kidney", "lungs", "liver", "pancreas"];
     } else if (type === "oncology") {
       return [
         "stomach",
@@ -922,22 +928,13 @@ const HWSearch = () => {
                         <div className="flex flex-wrap gap-4 items-baseline">
                           {getOrganOptions().map((option) => (
                             <button
-                              style={{
-                                border:
-                                  selectImage === "Kidney"
-                                    ? "1px solid #C8ADFF"
-                                    : "1px solid #C5CEE0",
-                                color:
-                                  selectImage === "Kidney"
-                                    ? "#6E2FEB"
-                                    : "#101426",
-                                backgroundColor:
-                                  selectImage === "Kidney"
-                                    ? "#F5F0FF"
-                                    : "white",
-                                padding: "10px",
-                                borderRadius: "10px",
-                              }}
+                            style={{
+                              border: selectImage === option ? "1px solid #C8ADFF" : "1px solid #C5CEE0",
+                              color: selectImage === option ? "#6E2FEB" : "#101426",
+                              backgroundColor: selectImage === option ? "#F5F0FF" : "white",
+                              padding: "10px",
+                              borderRadius: "10px",
+                            }}
                               key={option}
                               onClick={() => handleOrganSelection(option)}
                             >
