@@ -286,6 +286,35 @@ const HWSearch = () => {
   const [searchFor, setSearchFor] = useState('');
   const [organ, setOrgan] = useState(''); 
   const [error, setError] = useState('');
+  const [selectImage, setSelectImage] = useState('Kidney')
+
+
+  const handleTypeSelection = (selectedType) => {
+    // You can perform any logic here based on the selected type
+    console.log('Selected Type:', selectedType);
+     setType(selectedType);
+    // Redirect to the search results page with the selected type
+    // router.push(`/searchView?type=${selectedType}`);
+  };
+
+  const handleOrganSelection = (selectedOrgan) => {
+    console.log('Selected Organ:', selectedOrgan);
+    setOrgan(selectedOrgan);
+
+    // Redirect to the search results page with the selected organ
+    // router.push(`/searchView?organ=${selectedOrgan}&type=${type}`);
+  };
+
+  const getOrganOptions = () => {
+    console.log('inside get ', organ);
+   
+    if (type === 'transplant') {
+      return ['lungs', 'kidney', 'liver',  'pancreas'];
+    } else if (type === 'oncology') {
+      return ['stomach', 'breast','lungs', 'liver', 'pancreas', 'bile_duct', 'adrenal', 'rectum', 'small_intestine', 'colon'];
+    }
+    return [];
+  };
 
   // useEffect(() => {
   //   const fetchApiData = async () => {
@@ -534,6 +563,17 @@ const HWSearch = () => {
             </div>
           </div>
 
+          {/* //==================================================== */}
+
+          <div className='sm:flex grid grid-cols-2 place-content-stretch gap-4 my-2 max-w-[270px] items-center'>
+          <button onClick={() => handleTypeSelection('transplant')}>
+            Transplant
+          </button>
+          <button onClick={() => handleTypeSelection('oncology')}>
+            Oncology
+          </button>
+      </div>
+
           <div className='my-2 flex-wrap'>
             <h3 className='mt-4 mb-2 font-bold text-[#101426] text-base'>Searching For</h3>
             <ul className='flex flex-wrap gap-4 items-center'>
@@ -629,11 +669,60 @@ const HWSearch = () => {
           {selectedTab === 1 ? (
             <div className='flex'>
               {selectedOption === 'Cancer' || selectedMutiple === 'Hospital' || (
-                <div className='transplantBox mb-2'>
-                  <h3 className='font-bold text-[#101426] text-base mt-2'>Organ</h3>
-                  {/* Render 4 boxes for Transplant */}
-                  <FilterBox title="" />
-                </div>
+                <><div className='transplantBox mb-2'>
+                    <h3 className='font-bold text-[#101426] text-base mt-2'>Organ</h3>
+                    {/* --------------------- */}
+                    {/* Render 4 boxes for Transplant */}
+                    <FilterBox title="" />
+                  </div>
+                  <div>
+         <div className='mt-4 text-center'>
+        <div className='flex flex-wrap gap-4 items-baseline'>
+          {getOrganOptions().map((option) => (
+            <button
+            style={{
+              border: selectImage === 'Kidney' ? '1px solid #C8ADFF' : '1px solid #C5CEE0',
+              color: selectImage === 'Kidney' ? '#6E2FEB' : '#101426',
+              backgroundColor: selectImage === 'Kidney' ? '#F5F0FF' : 'white',
+            }}
+              key={option}
+              onClick={() => handleOrganSelection(option)}
+            >
+                    <img
+        className=""
+        src={`../images/search/${option}.svg`}
+        alt='React Image'
+      />
+              {option.charAt(0).toUpperCase() + option.slice(1)}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+     </>
+
+      //    <div className='mt-4 text-center'>
+      // <div className='flex flex-wrap gap-4 items-baseline'>
+    //   <div
+    //   className="hwFilterBox"
+    //   style={{
+    //     border: selectImage === 'Kidney' ? '1px solid #C8ADFF' : '1px solid #C5CEE0',
+    //     color: selectImage === 'Kidney' ? '#6E2FEB' : '#101426',
+    //     backgroundColor: selectImage === 'Kidney' ? '#F5F0FF' : 'white',
+    //   }}
+    //   onClick={() => setSelectImage('Kidney')}
+    // >
+      // <img
+      //   className=""
+      //   src={selectImage === 'Kidney' ? '../images/search/kidney_active.svg' : '../images/search/{kidney}.svg'}
+      //   alt='React Image'
+      // />
+    //   <span
+    //     className={selectImage === 'Kidney' ? 'text-[#6E2FEB]' : 'text-[#101426]'}
+    //   >
+    //     Kidney
+    //   </span>
+    // </div>
               )}
               {selectedOption === 'Transplant' || selectedMutiple === 'Hospital' || (
                 <div className='cancerBox mb-2'>
