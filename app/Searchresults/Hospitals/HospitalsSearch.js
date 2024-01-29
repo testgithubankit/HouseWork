@@ -98,12 +98,12 @@ export default function ApiData() {
         console.log(type, searchFor, organ);
   
         try {
-          // console.log(type,organ);
-          // // const apiUrl=`https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}`;
-          // // const response = await fetch(apiUrl);
-          // // const result = await response.json();
-          // setDoctorsData(result.results);
-          // console.log(result);
+          console.log(type,organ);
+          const apiUrl=`https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}`;
+          const response = await fetch(apiUrl);
+          const result = await response.json();
+          setDoctorsData(result.results);
+          console.log(result);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -276,6 +276,17 @@ export default function ApiData() {
                             </div>
 
                             <div className="flex items-center py-10 gap-4 sm:h-[140px]">
+                            <h1>Filtered Doctors</h1>
+                          <ul>
+                            {doctorsData.map((doctor) => (
+                              <li key={doctor.id}>
+                                <h3>{`${doctor.first_name} ${doctor.last_name}`}</h3>
+                                <p>NPI: {doctor.npi}</p>
+                                <p>Speciality: {doctor.primary_speciality}</p>
+                                {/* Add more details as needed */}
+                              </li>
+                            ))}
+                          </ul>
                                 <div>
                                   <img className="min-w-[50px]" src="../images/search/education_training.svg" />
                                 </div>
@@ -468,7 +479,7 @@ export default function ApiData() {
                                 className={`span_violet rounded-md bg-[#f0f5ff] text-[#1d39c4] border border-[#d6e4ff] ${
                                 item.hospital_type ? 'py-1 px-2' : 'py-0 px-0'}`}>
                                 {item.hospital_type}
-                              </span>      
+                              </span>
                                 <span
                                   onClick={() => toggleZipCode(item.id)}
                                   className="flex relative border-[#95de64] rounded-md bg-[#f6ffed] text-[#95de64] border py-1 px-2"
@@ -570,7 +581,7 @@ export default function ApiData() {
                                           <div key={index} className='detailsInner w-full ease-in-out duration-1500'>
                                             <div className="py-4 detailsTitle text-[#101426]">
                                                 <h2 className="text-3xl font-semibold m-b-3 text-[#101426]">
-                                                {`${capitalizeString(item.facility_name)}`}
+                                                {`${capitalizeString(item.first_name)}`}
                                                 </h2>
                                                 <div class="flex space-x-4 py-4 text-sm font-medium">
                                                     <div class="flex-auto flex justify-start items-center font-semibold">
