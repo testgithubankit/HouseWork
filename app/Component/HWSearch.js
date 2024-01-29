@@ -292,7 +292,7 @@ const HWSearch = () => {
   const handleTypeSelection = (selectedType) => {
     handleOptionClick(selectedType);
     // You can perform any logic here based on the selected type
-    console.log('Selected Type:', selectedType);
+    console.log('Selected Type :', selectedType);
      setType(selectedType);
     // Redirect to the search results page with the selected type
     // router.push(`/searchView?type=${selectedType}`);
