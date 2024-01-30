@@ -922,8 +922,8 @@ const HWSearch = () => {
                     </div>
                     <div>
                       <div
-                        className="mt-4 text-center"
-                        style={{ marginTop: "50px", marginLeft: "-50px" }}
+                        className="mt-[50px] text-center"
+                        style={{marginLeft: "-50px" }}
                       >
                         <div className="flex flex-wrap gap-4 items-baseline">
                           {getOrganOptions().map((option) => (
@@ -932,8 +932,12 @@ const HWSearch = () => {
                               border: selectImage === option ? "1px solid #C8ADFF" : "1px solid #C5CEE0",
                               color: selectImage === option ? "#6E2FEB" : "#101426",
                               backgroundColor: selectImage === option ? "#F5F0FF" : "white",
-                              padding: "10px",
+                              padding: "20px",
                               borderRadius: "10px",
+                              maxWidth: "100%",
+                              width: "97px",
+                              height: "101px",
+                              fontSize: "14px"
                             }}
                               key={option}
                               onClick={() => handleOrganSelection(option)}
