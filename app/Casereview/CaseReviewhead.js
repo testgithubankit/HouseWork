@@ -12,19 +12,19 @@ const CaseReviewhead = () => {
 	  {
 	    id: 2,
       title: 'Submit a Case from any location',
-	    imageUrl: '../Images/casereview/hwCR02.png',
+	    imageUrl: 'https://househealthinc.com/wp-content/uploads/2021/10/Frame-2208-1.png',
 	    description: 'Our team of expert doctors will review your case no matter from which location you submit a case for review.',
 	  },
 	  {
 	    id: 3,
       title: 'There is no cost involved',
-	    imageUrl: '../Images/casereview/hwCR03.png',
+	    imageUrl: 'https://househealthinc.com/wp-content/uploads/2021/10/Frame-2210.png',
 	    description: 'Your case will be reviewed for free from the top doctors in the US',
 	  },
 	  {
 	    id: 4,
       title: 'Your personal information is safe',
-	    imageUrl: '../Images/casereview/hwCR04.png',
+	    imageUrl: 'https://househealthinc.com/wp-content/uploads/2021/10/Frame-2209.png',
 	    description: 'You can trust us with your information, we take utmost care to keep your medical information safe.',
 	  },
 	];
