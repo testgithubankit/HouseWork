@@ -57,7 +57,7 @@ const CaseReviewhead = () => {
             <div className="">
               <img 
               className="hover:scale-105 duration-500" 
-              src='../Images/casereview/CRDashboard.svg' 
+              src='https://househealthinc.com/wp-content/uploads/2021/10/b3493941-97e8-45d9-9e4f-24bf960cd4dc-2.svg' 
               alt='{aboutHouseworkProvider.title}' />
             </div>
           </div>
