@@ -1,9 +1,9 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import HwSearchZip from '../Component/HwSearchZip'
-import HWLoader from '../Component/HWLoader';
-import HwShareon from '../Component/HwShareon';
-import MedicareNote from '../Component/MedicareNote';
+import HwSearchZip from '../../Component/HwSearchZip'
+import HWLoader from '../../Component/HWLoader';
+import HwShareon from '../../Component/HwShareon';
+import MedicareNote from '../../Component/MedicareNote';
 // import HwIcons from '@/Components/HwIcons';
 
 import {PiGenderMaleLight, PiShareNetwork} from "react-icons/pi";
@@ -17,10 +17,16 @@ import { IoClose } from 'react-icons/io5';
 import Modal from 'react-modal';
 
 
-async function fetchDoctors(page, perPage) {
-    const response = await fetch(`https://api.coc.houseworksinc.co/api/v1/doctors?page=${page}&per_page=${perPage}`)
-    const data = await response.json();
-    return data;
+// async function fetchDoctors(page, perPage) {
+//     const response = await fetch(`https://api.coc.houseworksinc.co/api/v1/doctors?page=${page}&per_page=${perPage}`)
+//     const data = await response.json();
+//     return data;
+// }
+
+async function fetchDoctors(type, organ,page, perPage) {
+  const response = await fetch(`https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}?page=${page}&per_page=${perPage}`)
+  const data = await response.json();
+  return data;
 }
 
 export default function ApiData() {
@@ -37,12 +43,13 @@ export default function ApiData() {
     const [filterModalIsOpen, setFilterModalIsOpen] = useState(false);
     const [compareModalIsOpen, setCompareModalIsOpen] = useState(false);
 
-    // const [page, setPage] = useState(1);
-    // const [perPage] = useState(10);
+    const [page, setPage] = useState(1);
+    const [perPage] = useState(10);
     const [totalPages, setTotalPages] = useState(1);
     const [totalDataCount, setTotalDataCount] = useState(0);
     const [selectedItemID, setSelectedItemID] = useState(null);
     const [selectedPage, setSelectedPage] = useState(1);
+    const [doctorsData, setDoctorsData] = useState([]);
 
     //Add Search Icon in Search Filter
     const handleSearchInputChange = (event) => {
@@ -54,6 +61,44 @@ export default function ApiData() {
       setIsShareOpen(!isShareOpen);
     };
 
+
+    // api
+    useEffect(() => {
+      const fetchData = async () => {
+        console.log(window.location);
+        let myKeys = window.location.search;
+        console.log("k & V :", myKeys);
+  
+        let urlParams = new URLSearchParams(myKeys);
+  
+        let param1 = urlParams.get("search");
+  
+        console.log(param1);
+  
+        let filterParams = new URLSearchParams(param1);
+  
+        // Get values for type, searchFor, and organ
+        let type = filterParams.get("type");
+        let searchFor = filterParams.get("searchFor");
+        let organ = filterParams.get("organ");
+  
+        console.log(type, searchFor, organ);
+  
+        try {
+          console.log(type,organ);
+          const apiUrl=`https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}`;
+          const response = await fetch(apiUrl);
+          const result = await response.json();
+          setDoctorsData(result.results);
+          console.log(result);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+  
+      fetchData();
+    }, []);
+
     //Loader 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -62,22 +107,22 @@ export default function ApiData() {
       //setActiveItemID(itemId);
     };
     
-  //   const handlePageClick = (pageNumber) => {
-  //     if (pageNumber === 'prev' && page > 1) {
-  //         if (page > 1) {
-  //             setPage(page - 1);
-  //             setSelectedPage(page - 1);
-  //         }
-  //     } else if (pageNumber === 'next' && page < totalPages) {
-  //         if (page < totalPages) {
-  //             setPage(page + 1);
-  //             setSelectedPage(page + 1);
-  //         }
-  //     } else if (typeof pageNumber === 'number' && pageNumber !== selectedPage) {
-  //         setPage(pageNumber);
-  //         setSelectedPage(pageNumber);
-  //     }
-  // };
+    const handlePageClick = (pageNumber) => {
+      if (pageNumber === 'prev' && page > 1) {
+          if (page > 1) {
+              setPage(page - 1);
+              setSelectedPage(page - 1);
+          }
+      } else if (pageNumber === 'next' && page < totalPages) {
+          if (page < totalPages) {
+              setPage(page + 1);
+              setSelectedPage(page + 1);
+          }
+      } else if (typeof pageNumber === 'number' && pageNumber !== selectedPage) {
+          setPage(pageNumber);
+          setSelectedPage(pageNumber);
+      }
+  };
 
     // Capitalize the first letter of each word
     function capitalizeString(str) {
@@ -86,47 +131,47 @@ export default function ApiData() {
       });
     }
     // Filter Pagination 
-    // const loadMore = () => {
-    //   if (page < totalPages) {
-    //     setPage(page + 1);
-    //     setSelectedPage(selectedPage+1)
-    //   }
-    // };
-    // const loadPrevious = () => {
-    //   if (page > 1) {
-    //     setPage(page - 1);
-    //     setSelectedPage(selectedPage-1)
-    //   }
-    // };
-  //   const generatePageNumbers = () => {
-  //     const pageNumbers = [];
-  //     const numPageLinksToShow = 5;
-  //     let startPage = Math.max(1, page - Math.floor(numPageLinksToShow / 1));
-  //     let endPage = Math.min(totalPages, startPage + numPageLinksToShow);
+    const loadMore = () => {
+      if (page < totalPages) {
+        setPage(page + 1);
+        setSelectedPage(selectedPage+1)
+      }
+    };
+    const loadPrevious = () => {
+      if (page > 1) {
+        setPage(page - 1);
+        setSelectedPage(selectedPage-1)
+      }
+    };
+    const generatePageNumbers = () => {
+      const pageNumbers = [];
+      const numPageLinksToShow = 5;
+      let startPage = Math.max(1, page - Math.floor(numPageLinksToShow / 1));
+      let endPage = Math.min(totalPages, startPage + numPageLinksToShow);
 
-  //     if (endPage - startPage < numPageLinksToShow) {
-  //       startPage = Math.max(1, endPage - numPageLinksToShow + 1);
-  //     }
-  //     for (let i = startPage; i <= endPage; i++) {
-  //       pageNumbers.push(i);
-  //     }
-  //     return pageNumbers;
-  // };
+      if (endPage - startPage < numPageLinksToShow) {
+        startPage = Math.max(1, endPage - numPageLinksToShow + 1);
+      }
+      for (let i = startPage; i <= endPage; i++) {
+        pageNumbers.push(i);
+      }
+      return pageNumbers;
+  };
 
     // Result Load Code
-    // useEffect(() => {
-    //   async function loadResults() {
-    //     const data = await  fetchDoctors(page, perPage);
-    //     setResults(data.results);
-    //     setTotalDataCount(data.count);
-    //     setTotalPages(Math.ceil(data.count / perPage));
-    //     if (data.results && data.results.length > 0) {
-    //       setSelectedItemID(data.results[0].id);
-    //     }
-    //     setIsLoading(false);
-    //   }
-    //   loadResults();
-    // }, [page,perPage]);
+    useEffect(() => {
+      async function loadResults() {
+        const data = await  fetchDoctors(page, perPage);
+        setResults(data.results);
+        setTotalDataCount(data.count);
+        setTotalPages(Math.ceil(data.count / perPage));
+        if (data.results && data.results.length > 0) {
+          setSelectedItemID(data.results[0].id);
+        }
+        setIsLoading(false);
+      }
+      loadResults();
+    }, [page,perPage]);
 
     const toggleZipCode = (doctorId) => {
       setShowZipCode(doctorId);
@@ -146,17 +191,17 @@ export default function ApiData() {
       return selectedItem;
     });
     
-    // useEffect(() => {
-    //   async function loadDefaultDoctor(){
-    //     // const data = await fetchDoctors(1,1);
-    //     // setResults(data.results);
-    //     if (data.results && data.results.length > 0) {
-    //       setShowZipCode(data.results[0].id);
-    //       setSelectedItemID(data.results[0].id); 
-    //     }
-    //   }
-    //   loadDefaultDoctor();
-    // }, []);
+    useEffect(() => {
+      async function loadDefaultDoctor(){
+        const data = await fetchDoctors(1,1);
+        setResults(data.results);
+        if (data.results && data.results.length > 0) {
+          setShowZipCode(data.results[0].id);
+          setSelectedItemID(data.results[0].id); 
+        }
+      }
+      loadDefaultDoctor();
+    }, []);
 
     const closeModal = () => {
       setModalIsOpen(false);
@@ -454,7 +499,7 @@ export default function ApiData() {
 
                           {/* ###Filter Pagination Start*/}
                           <div className='hwFitlerPagination mt-4 text-center'>
-                            {/* <div className='flex p-4 items-center justify-center gap-1 border-gray-200'>
+                            <div className='flex p-4 items-center justify-center gap-1 border-gray-200'>
                               <button
                               className='inline-flex shadow-md items-center rounded-md text-sm px-3 py-2 text-gray-600 ring-1 hover:text-[#fff] ring-inset bg-[#f7f9fc] hover:bg-[#6E2FEB] ring-gray-100 focus:z-20 focus:outline-offset-0' 
                               onClick={loadPrevious} disabled={page === 1}>Prev</button>
@@ -472,7 +517,7 @@ export default function ApiData() {
                               <button 
                               className='shadow-md inline-flex items-center bg-[#f7f9fc] rounded-md text-sm px-3 py-2 ring-1 ring-inset hover:text-[#fff] text-grey-600 hover:bg-[#6E2FEB] ring-gray-100 focus:z-20 focus:outline-offset-0'
                               onClick={loadMore} disabled={page === totalPages}>Next</button>
-                            </div> */}
+                            </div>
                           </div>{/* ###Filter Pagination End*/}
 
                           <div className='filterCompareBtns sticky bottom-0 left-4 right-10 z-1 bg-[#fff] p-4 max-w-[480px] -shadow-sm'>

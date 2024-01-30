@@ -1,21 +1,21 @@
 "use client"
 import React from 'react';
-import HospitalsSearch from './HospitalsSearch';
+import DoctorSearch from './DoctorSearch';
 // import SubmitCaseForReview from '@/Components/SubmitCaseForReview';
 
 
 
-const SearchHospitals = () => {
+const SearchDoctors = () => {
   return (
     <>
       <section
         className="SearchDoctors mb-1"
       >
-        <HospitalsSearch />
+        <DoctorSearch />
         {/* <SubmitCaseForReview /> */}
       </section>
     </>
   );
 }
 
-export default SearchHospitals;
+export default SearchDoctors;

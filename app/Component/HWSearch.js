@@ -1005,7 +1005,7 @@ const HWSearch = () => {
           className="inline-block text-center px-3 py-3 rounded-md bg-[#6e2feb] shadow-2xl
           hover:bg-[#3c1faf] ease-in duration-300 font-bold text-[#fff] cursor-pointer w-[100%]"
           href={{
-            pathname: "/Searchresults",
+            pathname: "/SearchResult",
             query: {
               search: `type=${type}&searchFor=${searchFor}&organ=${organ}`,
             },
