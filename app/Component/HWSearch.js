@@ -982,9 +982,6 @@ const HWSearch = () => {
               {selectedOption === "Transplant" ||
                 selectedMutiple === "Hospital" || (
                   <div className="cancerBox mb-2">
-                    {/* Render 10 boxes for Cancer */}
-                    {/* <h3 className='font-bold text-[#101426] text-base mt-2'>Organ</h3> */}
-                    {/* <Filter title="" /> */}
                   </div>
                 )}
             </div>
@@ -997,18 +994,11 @@ const HWSearch = () => {
       )}
 
       <div className="px-4 sm:px-8 mb-2">
-        {/* <a href='/Searchresults/'
-          className='inline-block text-center px-3 py-3 rounded-md bg-[#6e2feb] shadow-2xl
-      hover:bg-[#3c1faf] ease-in duration-300 font-bold text-[#fff] cursor-pointer w-[100%]'
-        >Search</a> */}
         <Link
           className="inline-block text-center px-3 py-3 rounded-md bg-[#6e2feb] shadow-2xl
           hover:bg-[#3c1faf] ease-in duration-300 font-bold text-[#fff] cursor-pointer w-[100%]"
           href={{
-            // pathname: "/SearchResult",
-            // pathname:"/Searchresults",
             pathname: searchFor === 'Doctor' ? '/SearchResult' : '/Searchresults',
-
             query: {
               search: `type=${type}&searchFor=${searchFor}&organ=${organ}`,
             },

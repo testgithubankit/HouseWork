@@ -5,7 +5,7 @@ const CaseReviewhead = () => {
 	  {
 	    id: 1 ,
       title: 'The best doctors will review your case',
-	    imageUrl: '../Images/casereview/hwCR01.png',
+	    imageUrl: 'https://househealthinc.com/wp-content/uploads/2021/10/Frame-2208.png',
 	    description: 'Our team of expert doctors will review your case for freeand will guide you on further steps.',
 	    
 	  },
