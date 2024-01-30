@@ -459,7 +459,7 @@ const HWSearch = () => {
   const [apiDataLoaded, setApiDataLoaded] = useState(false);
 
   const [type, setType] = useState("transplant");
-  const [searchFor, setSearchFor] = useState("");
+  const [searchFor, setSearchFor] = useState("Doctor");
   const [organ, setOrgan] = useState("");
   const [error, setError] = useState("");
   const [selectImage, setSelectImage] = useState("kidney");
@@ -820,7 +820,7 @@ const HWSearch = () => {
                   backgroundColor:
                     selectedMutiple === "Hospital" ? "#F5F0FF" : "#ffff",
                 }}
-                onClick={() => setselectedMutiple("Hospital")}
+                onClick={() => handleOptionClick1("Hospital")}
               >
                 Hospital
               </li>
@@ -1005,8 +1005,10 @@ const HWSearch = () => {
           className="inline-block text-center px-3 py-3 rounded-md bg-[#6e2feb] shadow-2xl
           hover:bg-[#3c1faf] ease-in duration-300 font-bold text-[#fff] cursor-pointer w-[100%]"
           href={{
-            pathname: "/SearchResult",
-            pathname:"/Searchresults",
+            // pathname: "/SearchResult",
+            // pathname:"/Searchresults",
+            pathname: searchFor === 'Doctor' ? '/SearchResult' : '/Searchresults',
+
             query: {
               search: `type=${type}&searchFor=${searchFor}&organ=${organ}`,
             },

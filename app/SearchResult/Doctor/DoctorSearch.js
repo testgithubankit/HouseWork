@@ -15,6 +15,7 @@ import {RiSearchLine} from 'react-icons/ri';
 import {GrClose} from 'react-icons/gr';
 import { IoClose } from 'react-icons/io5';
 import Modal from 'react-modal';
+import { type } from 'os';
 
 
 // async function fetchDoctors(page, perPage) {
@@ -50,6 +51,9 @@ export default function ApiData() {
     const [selectedItemID, setSelectedItemID] = useState(null);
     const [selectedPage, setSelectedPage] = useState(1);
     const [doctorsData, setDoctorsData] = useState([]);
+    const [valueType, setType] = useState('');
+    const [valueOrgan, setOrgan] = useState("");
+
 
     //Add Search Icon in Search Filter
     const handleSearchInputChange = (event) => {
@@ -82,6 +86,10 @@ export default function ApiData() {
         let searchFor = filterParams.get("searchFor");
         let organ = filterParams.get("organ");
   
+        setType(type)
+        setOrgan(organ)
+        console.log('type setted - ', setType(type));
+
         console.log(type, searchFor, organ);
   
         try {
@@ -399,7 +407,7 @@ export default function ApiData() {
               <div className='flex items-center justify-between p-4 max-w-[1355px] mx-auto'>
                   {/* HW Filter Top Left */}
                   <div className=''>
-                    <p>Showing <span className='font-semibold'>{totalDataCount}</span> results</p>
+                  <p>Showing <span className='font-semibold'>{doctorsData.length}</span> doctor for {valueType} , for {valueOrgan} </p>
                   </div>
                   {/* HW Filter Top Right */}
                   <div className='flex items-center gap-5'>
