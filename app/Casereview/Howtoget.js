@@ -10,23 +10,23 @@ const Howtoget = () => {
 	const casereviewBlocks = [
 	  {
 	    id: 1,
-	    imageUrl: '../Images/casereview/htgCR01.svg',
+	    imageUrl: 'https://househealthinc.com/wp-content/uploads/2021/10/Group-1896.svg',
 	    description: 'You signup and submit \n your case',
 	    
 	  },
 	  {
 	    id: 2,
-	    imageUrl: '../Images/casereview/htgCR02.svg',
+	    imageUrl: 'https://househealthinc.com/wp-content/uploads/2021/10/Group-1898.svg',
 	    description: 'You get timely updates and status reports for your case',
 	  },
 	  {
 	    id: 3,
-	    imageUrl: '../Images/casereview/htgCR03.svg',
+	    imageUrl: 'https://househealthinc.com/wp-content/uploads/2021/10/Group-1899.svg',
 	    description: 'Our team of providers will review the case & recommend suitable treatment',
 	  },
 	  {
 	    id: 4,
-	    imageUrl: '../Images/casereview/htgCR04.svg',
+	    imageUrl: 'https://househealthinc.com/wp-content/uploads/2021/10/Group-1897.svg',
 	    description: 'We suggest the next course of action',
 	  }
 	];
