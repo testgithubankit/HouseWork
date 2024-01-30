@@ -24,7 +24,7 @@ const Contactinfo = () => {
                 <p className='text-[#101426cc] text-xl'>2093375705</p>
             </div>
             <div className='shadow-md rounded-2xl rounded-bl-[70px] bg-[#f7f9fc] p-10 md:p-12 h-[225px]'>
-                <img src="../images/contact/Location-icon.png"  
+                <img src="https://househealthinc.com/wp-content/uploads/2021/11/Location-Icon.png"  
                 className="max-w-[70px] text-center inline"/>
                 <h3 className='text-xl md:text-2xl font-regular py-3'>We're On The Map</h3>
                 <p className='text-[#101426cc]'>25550 HAWTHORNE BLVD</p>
