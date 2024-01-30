@@ -1006,6 +1006,7 @@ const HWSearch = () => {
           hover:bg-[#3c1faf] ease-in duration-300 font-bold text-[#fff] cursor-pointer w-[100%]"
           href={{
             pathname: "/SearchResult",
+            pathname:"/Searchresults",
             query: {
               search: `type=${type}&searchFor=${searchFor}&organ=${organ}`,
             },

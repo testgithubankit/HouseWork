@@ -32,7 +32,7 @@ const Form = () => {
     const [phoneNumber, setPhoneNumber] = useState(); // Initialize state for the phone number
     const [submissionStatus, setSubmissionStatus] = useState(null);
 
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit } = Formik({
+    const { values, errors, touched, handleBlur, handleSubmit } = Formik({
         initialValues: initialValues,
         validationSchema: signUpSchema,
         onSubmit: (values, action) => {
@@ -61,6 +61,10 @@ const Form = () => {
             });
     }
 
+    const handleChange = (event) => {
+        // Your logic for handling the change event
+        console.log('Phone number changed:', event.target.value);
+      };
     useEffect(() => {
         if (submissionStatus) {
             const timer = setTimeout(() => {
