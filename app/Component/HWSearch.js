@@ -506,7 +506,7 @@ const HWSearch = () => {
         "adrenal",
         "rectum",
         "breast",
-        "small_intestine",
+        "small intestine",
         "stomach",
         "colon",
       ];

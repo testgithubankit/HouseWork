@@ -92,6 +92,9 @@ export default function ApiData() {
 
         console.log(type, searchFor, organ);
   
+        if(organ=='small intestine'){
+          organ='small_intestine'
+        }
         try {
           console.log(type,organ);
           const apiUrl=`https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}`;
