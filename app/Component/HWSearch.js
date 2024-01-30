@@ -499,15 +499,15 @@ const HWSearch = () => {
       return ["kidney", "lungs", "liver", "pancreas"];
     } else if (type === "oncology") {
       return [
-        "stomach",
-        "breast",
         "lungs",
         "liver",
         "pancreas",
         "bile_duct",
         "adrenal",
         "rectum",
+        "breast",
         "small_intestine",
+        "stomach",
         "colon",
       ];
     }
