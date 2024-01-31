@@ -32,7 +32,7 @@ const Form = () => {
     const [phoneNumber, setPhoneNumber] = useState(); // Initialize state for the phone number
     const [submissionStatus, setSubmissionStatus] = useState(null);
 
-    const { values, errors, touched, handleBlur, handleSubmit} = Formik({
+    const { values, errors, touched, handleBlur, handleSubmit } = Formik({
         initialValues: initialValues,
         validationSchema: signUpSchema,
         onSubmit: (values, action) => {
@@ -53,7 +53,7 @@ const Form = () => {
     const form = useRef();
     const sendEmail = (e) => {
         e.preventDefault();
-        emailjs.sendForm('service_si052ki', 'template_b1gnz1a', form.current, '2oyCQac76Fg_xgT6j')
+        emailjs.sendForm('service_epm1uwd', 'template_40au5z7', form.current, 'wPqu2lsDvhtb7UbT2')
             .then((result) => {
                 console.log(result.text);
             }, (error) => {
