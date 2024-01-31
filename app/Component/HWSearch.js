@@ -544,7 +544,7 @@ const HWSearch = () => {
           setApiDataLoaded(true);
         }
       } catch (error) {
-        console.error("Error fetching zip codes:", error);
+        console.error("Error fetching zip codes:",  error);
       } finally {
         setLoadingZip(false);
       }
