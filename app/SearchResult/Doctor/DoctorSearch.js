@@ -76,9 +76,9 @@ export default function ApiData({data}) {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          console.log(window.location);
+          // console.log(window.location);
           let myKeys = window.location.search;
-          console.log("k & V :", myKeys);
+          // console.log("k & V :", myKeys);
   
           let urlParams = new URLSearchParams(myKeys);
   
@@ -93,7 +93,7 @@ export default function ApiData({data}) {
           setType(type);
           setOrgan(organParam); // Set organ using the value from URL parameters
   
-          console.log('type setted - ', type);
+          // console.log('type setted - ', type);
   
           if (organParam === 'small intestine') {
             organParam = 'small_intestine';
@@ -104,7 +104,7 @@ export default function ApiData({data}) {
           // Set the data to state
           setDoctorsData(data.results);
   
-          console.log(data);
+          // console.log(data);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
