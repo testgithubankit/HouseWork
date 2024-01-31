@@ -24,13 +24,19 @@ import { type } from 'os';
 //     return data;
 // }
 
-async function fetchDoctors(type, organ,page, perPage) {
-  const response = await fetch(`https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}?page=${page}&per_page=${perPage}`)
-  const data = await response.json();
-  return data;
+async function fetchDoctors(type, organ) {
+  try {
+    const apiUrl = `https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}`;
+    const response = await fetch(apiUrl);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error fetching doctors:", error);
+    return { results: [] }; // Return empty array or handle error accordingly
+  }
 }
 
-export default function ApiData() {
+export default function ApiData({data}) {
     const [searchTerm, setSearchTerm] = useState('');
     const [results, setResults] = useState([]);
 
@@ -69,45 +75,43 @@ export default function ApiData() {
     // api
     useEffect(() => {
       const fetchData = async () => {
-        console.log(window.location);
-        let myKeys = window.location.search;
-        console.log("k & V :", myKeys);
-  
-        let urlParams = new URLSearchParams(myKeys);
-  
-        let param1 = urlParams.get("search");
-  
-        console.log(param1);
-  
-        let filterParams = new URLSearchParams(param1);
-  
-        // Get values for type, searchFor, and organ
-        let type = filterParams.get("type");
-        let searchFor = filterParams.get("searchFor");
-        let organ = filterParams.get("organ");
-  
-        setType(type)
-        setOrgan(organ)
-        console.log('type setted - ', setType(type));
-
-        console.log(type, searchFor, organ);
-        if(organ=='small intestine'){
-          organ='small_intestine'
-        }
         try {
-          console.log(type,organ);
-          const apiUrl=`https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}`;
-          const response = await fetch(apiUrl);
-          const result = await response.json();
-          setDoctorsData(result.results);
-          console.log(result);
+          console.log(window.location);
+          let myKeys = window.location.search;
+          console.log("k & V :", myKeys);
+  
+          let urlParams = new URLSearchParams(myKeys);
+  
+          let param1 = urlParams.get("search");
+  
+          let filterParams = new URLSearchParams(param1);
+  
+          let type = filterParams.get("type");
+          let searchFor = filterParams.get("searchFor");
+          let organParam = filterParams.get("organ");
+  
+          setType(type);
+          setOrgan(organParam); // Set organ using the value from URL parameters
+  
+          console.log('type setted - ', type);
+  
+          if (organParam === 'small intestine') {
+            organParam = 'small_intestine';
+          }
+  
+          // Use the fetchDoctors function to get data
+          const data = await fetchDoctors(type, organParam);
+          // Set the data to state
+          setDoctorsData(data.results);
+  
+          console.log(data);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
       };
   
       fetchData();
-    }, []);
+    }, []); 
 
     //Loader 
     const [isLoading, setIsLoading] = useState(true);
