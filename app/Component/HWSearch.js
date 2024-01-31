@@ -836,18 +836,18 @@ const HWSearch = () => {
                   noValidate
                   autoComplete="off"
                 >
-                  <TextField
-                    className="bg-[#f7f9fc] sm:max-w-[210px] h-[48px] max-w-[145px] rounded-md p-3 shadow-none focus:shadow-none"
+                  <input
+                    className="relative bg-[#f7f9fc] sm:max-w-[210px] h-[48px] max-w-[145px] rounded-md p-3 shadow-none focus:shadow-none"
                     type="text"
                     id="outlined-basic"
-                    label="Select ZIP Codes"
+                    placeholder="Select ZIP Codes"
                     variant="outlined"
                     value={selectedZip}
                     onChange={handleInputChange}
                     onFocus={handleInputFocus}
-                    // style={{
-                    //   border: selectedZip === 'input' ? '1px solid #C5CEE0' : '1px solid rgb(197, 206, 224)',
-                    // }}
+                    style={{
+                      border: selectedZip === 'input' ? '1px solid #C5CEE0' : '1px solid rgb(197, 206, 224)',
+                    }}
                   />
                   {loadingZip && !apiDataLoaded && (
                     <>
@@ -860,8 +860,7 @@ const HWSearch = () => {
                       <HWLoader />
                     </>
                   )}
-                  <RiSearchLine className="absolute left-[180px] top-3.5 text-xl text-[#8f9bb3]" />
-
+                  <RiSearchLine className="absolute left-[182px] top-3.5 text-xl text-[#8f9bb3] w-[1rem]" />
                   {searchedZipCodes.length > 0 && (
                     <ul className="w-[170px] h-[200px] bg-[#fff] shadow absolute z-40 rounded-md border-slate-500 bg-[#f9f9f9] overflow-scroll">
                       {searchedZipCodes.map((zipCode) => (

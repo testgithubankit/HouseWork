@@ -76,9 +76,9 @@ export default function ApiData({data}) {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          console.log(window.location);
+          // console.log(window.location);
           let myKeys = window.location.search;
-          console.log("k & V :", myKeys);
+          // console.log("k & V :", myKeys);
   
           let urlParams = new URLSearchParams(myKeys);
   
@@ -91,9 +91,8 @@ export default function ApiData({data}) {
           let organParam = filterParams.get("organ");
   
           setType(type);
-          setOrgan(organParam); // Set organ using the value from URL parameters
+          setOrgan(organParam); 
   
-          console.log('type setted - ', type);
   
           if (organParam === 'small intestine') {
             organParam = 'small_intestine';
@@ -104,7 +103,7 @@ export default function ApiData({data}) {
           // Set the data to state
           setDoctorsData(data.results);
   
-          console.log(data);
+          // console.log(data);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -413,7 +412,7 @@ export default function ApiData({data}) {
               <div className='flex items-center justify-between p-4 max-w-[1355px] mx-auto'>
                   {/* HW Filter Top Left */}
                   <div className=''>
-                  <p>Showing <span className='font-semibold'>{doctorsData.length}</span> doctor for {valueType} , for {valueOrgan} </p>
+                  <p className='text-[15px]'>Showing <span className='font-[900]'>{doctorsData.length}</span> doctor for <span className='font-[900] capitalize'>{valueType},{valueOrgan}</span> in <span className='font-[900]'>Zipcode:76564</span> </p>
                   </div>
                   {/* HW Filter Top Right */}
                   <div className='flex items-center gap-5'>

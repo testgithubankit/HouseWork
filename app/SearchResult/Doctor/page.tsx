@@ -8,7 +8,7 @@ const SearchDoctors = () => {
   return (
     <>
       <section className="SearchDoctors mb-1">
-        <DoctorSearch />
+        <DoctorSearch />    
       </section>
     </>
   );
