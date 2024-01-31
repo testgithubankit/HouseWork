@@ -91,17 +91,9 @@ export default function ApiData() {
         console.log('type setted - ', setType(type));
 
         console.log(type, searchFor, organ);
-<<<<<<< HEAD
-         
         if(organ=='small intestine'){
           organ='small_intestine'
         }
-=======
-  
-        if(organ=='small intestine'){
-          organ='small_intestine'
-        }
->>>>>>> 2ad87fc80f2079b2995b561bed9a21f0ffc08965
         try {
           console.log(type,organ);
           const apiUrl=`https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}`;
