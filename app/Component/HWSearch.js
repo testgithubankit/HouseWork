@@ -506,7 +506,7 @@ const HWSearch = () => {
         "adrenal",
         "rectum",
         "breast",
-        "small_intestine",
+        "small intestine",
         "stomach",
         "colon",
       ];
@@ -935,7 +935,7 @@ const HWSearch = () => {
                               padding: "20px",
                               borderRadius: "10px",
                               maxWidth: "100%",
-                              width: "97px",
+                              width: "85px",
                               height: "101px",
                               fontSize: "14px"
                             }}

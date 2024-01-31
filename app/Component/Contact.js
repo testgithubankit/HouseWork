@@ -3,9 +3,9 @@ import React, { useRef, useState, useEffect } from 'react';
 import 'react-phone-number-input/style.css'; // Import the CSS
 import PhoneInput from 'react-phone-number-input';
 import emailjs from '@emailjs/browser';
-// import { useFormik } from 'Formik';
+import { useFormik } from 'Formik';
 // Example import statement
-import { Formik } from 'formik';
+// import { Formik } from 'formik';
 
 // import { signUpSchema } from './index'
 import * as Yup from "yup";
@@ -32,7 +32,7 @@ const Form = () => {
     const [phoneNumber, setPhoneNumber] = useState(); // Initialize state for the phone number
     const [submissionStatus, setSubmissionStatus] = useState(null);
 
-    const { values, errors, touched, handleBlur, handleSubmit } = Formik({
+    const { values, errors, touched, handleBlur, handleSubmit,handleChange } = useFormik({
         initialValues: initialValues,
         validationSchema: signUpSchema,
         onSubmit: (values, action) => {
@@ -53,7 +53,7 @@ const Form = () => {
     const form = useRef();
     const sendEmail = (e) => {
         e.preventDefault();
-        emailjs.sendForm('service_epm1uwd', 'template_40au5z7', form.current, 'wPqu2lsDvhtb7UbT2')
+        emailjs.sendForm('service_si052ki', 'template_b1gnz1a', form.current, '2oyCQac76Fg_xgT6j')
             .then((result) => {
                 console.log(result.text);
             }, (error) => {
@@ -61,10 +61,10 @@ const Form = () => {
             });
     }
 
-    const handleChange = (event) => {
-        // Your logic for handling the change event
-        console.log('Phone number changed:', event.target.value);
-      };
+    // const handleChange = (event) => {
+    //     // Your logic for handling the change event
+    //     console.log('Phone number changed:', event.target.value);
+    //   };
     useEffect(() => {
         if (submissionStatus) {
             const timer = setTimeout(() => {
