@@ -3,9 +3,9 @@ import React, { useRef, useState, useEffect } from 'react';
 import 'react-phone-number-input/style.css'; // Import the CSS
 import PhoneInput from 'react-phone-number-input';
 import emailjs from '@emailjs/browser';
-import { useFormik } from 'Formik';
+// import { useFormik } from 'Formik';
 // Example import statement
-// import { Formik } from 'formik';
+import { Formik } from 'formik';
 
 // import { signUpSchema } from './index'
 import * as Yup from "yup";
@@ -32,7 +32,7 @@ const Form = () => {
     const [phoneNumber, setPhoneNumber] = useState(); // Initialize state for the phone number
     const [submissionStatus, setSubmissionStatus] = useState(null);
 
-    const { values, errors, touched, handleBlur, handleSubmit,handleChange } = useFormik ({
+    const { values, errors, touched, handleBlur, handleSubmit } = Formik({
         initialValues: initialValues,
         validationSchema: signUpSchema,
         onSubmit: (values, action) => {
@@ -61,10 +61,10 @@ const Form = () => {
             });
     }
 
-    // const handleChange = (event) => {
-    //     // Your logic for handling the change event
-    //     console.log('Phone number changed:', event.target.value);
-    //   };
+    const handleChange = (event) => {
+        // Your logic for handling the change event
+        console.log('Phone number changed:', event.target.value);
+      };
     useEffect(() => {
         if (submissionStatus) {
             const timer = setTimeout(() => {
