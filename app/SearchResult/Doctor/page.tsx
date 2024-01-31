@@ -11,7 +11,7 @@ const SearchDoctors = () => {
       <section
         className="SearchDoctors mb-1"
       >
-        <DoctorSearch data={undefined} />
+        <DoctorSearch />
         {/* <SubmitCaseForReview /> */}
       </section>
     </>
