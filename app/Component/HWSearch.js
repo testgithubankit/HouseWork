@@ -451,7 +451,7 @@ const HWSearch = () => {
   const [searchedZipCodes, setSearchedZipCodes] = useState([]);
   const [selectedZipCodes, setSelectedZipCodes] = useState([]);
   const [counters, setCounters] = useState({});
-  const [zipCodes, setZipCodes] = useState([]);
+  const [zipCodes, setZipCodes] = useState(" ");
 
   const [loadingZip, setLoadingZip] = useState(false);
   const [doctorDataFetched, setDoctorDataFetched] = useState(false);
