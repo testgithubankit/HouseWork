@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import HWLoader from "./HWLoader";
 import Link from "next/link";
+import { ClipLoader } from 'react-spinners';
 
 // const FilterBox = ({ title }) => {
 //   const [selectImage, setSelectImage] = useState("Kidney");
@@ -832,35 +833,41 @@ const HWSearch = () => {
                 <Box
                   component="form"
                   sx={{
-                    "& > :not(style)": { m: 1, width: "25ch" },
+                    "& > :not(style)": { m: 1},
                   }}
                   noValidate
                   autoComplete="off"
                 >
                   <input
-                    className="relative bg-[#f7f9fc] sm:max-w-[210px] h-[48px] max-w-[145px] rounded-md p-3 shadow-none focus:shadow-none"
-                    type="text"
-                    id="outlined-basic"
-                    placeholder="Select ZIP Codes"
-                    variant="outlined"
-                    value={selectedZip}
-                    onChange={handleInputChange}
-                    onFocus={handleInputFocus}
-                    style={{
-                      border: selectedZip === 'input' ? '1px solid #C5CEE0' : '1px solid rgb(197, 206, 224)',
-                    }}
-                  />
-                  {loadingZip && !apiDataLoaded && (
-                    <>
-                      {selectedMutiple === "Doctor" && (
-                        <p>Loading Doctor data...</p>
-                      )}
-                      {selectedMutiple === "Hospital" && (
-                        <p>Loading Hospital data...</p>
-                      )}
-                      <HWLoader />
-                    </>
-                  )}
+  className="relative bg-[#f7f9fc] sm:max-w-[210px] h-[48px] max-w-[145px] rounded-md p-3 shadow-none focus:shadow-none"
+  type="text"
+  id="outlined-basic"
+  placeholder="Select ZIP Codes"
+  variant="outlined"
+  value={selectedZip}
+  onChange={handleInputChange}
+  onFocus={handleInputFocus}
+  style={{
+    border: selectedZip === 'input' ? '1px solid #C5CEE0' : '1px solid rgb(197, 206, 224)',
+    position: 'relative', // Ensure proper positioning
+  }}
+/>
+
+{loadingZip && !apiDataLoaded && (
+  <div style={{ position: 'absolute', top: '38%', left: '60%', transform: 'translate(-50%, -50%)' }}>
+    {/* {selectedMutiple === "Doctor" && (
+      <p>Loading Doctor data...</p>
+    )} */}
+    {/* {selectedMutiple === "Hospital" && (
+      // <p>Loading Hospital data...</p>
+    )} */}
+    <ClipLoader
+      color={"#123abc"}
+      size={10}
+      loading={true}
+    />
+  </div>
+)}
                   <RiSearchLine className="absolute left-[182px] top-3.5 text-xl text-[#8f9bb3] w-4" />
                   {searchedZipCodes.length > 0 && (
                     <ul className="w-[170px] h-[200px] bg-[#fff] shadow absolute z-40 rounded-md border-slate-500 bg-[#f9f9f9] overflow-scroll">
