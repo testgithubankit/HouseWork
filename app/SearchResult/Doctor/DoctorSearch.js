@@ -94,10 +94,8 @@ export default function ApiData() {
   
           // console.log('added zid code -; ',zipCode);
           setType(type);
-          setZipCode(zipCode);
           setOrgan(organParam); // Set organ using the value from URL parameters
   
-          // console.log('type setted - ', type);
   
           if (organParam === 'small intestine') {
             organParam = 'small_intestine';
@@ -300,7 +298,7 @@ export default function ApiData() {
 
                             <div className="flex justify-start items-center py-10 gap-4 sm:h-[140px]">
                                 <div>
-                                  <img className="min-w-[50px]" src="../images/specialities.svg" />
+                                  <img className="min-w-[50px]" src="https://househealthinc.com/wp-content/themes/blocksy-child/images/specialities.svg" />
                                 </div>
                                 <div className="font-semibold text-[#101426]">Specialities</div>
                             </div>
@@ -417,7 +415,7 @@ export default function ApiData() {
               <div className='flex items-center justify-between p-4 max-w-[1355px] mx-auto'>
                   {/* HW Filter Top Left */}
                   <div className=''>
-                  <p>Showing <span className='font-semibold'>{doctorsData.length}</span> doctor for {valueType} , for {valueOrgan} </p>
+                  <p className='text-[15px]'>Showing <span className='font-[900]'>{doctorsData.length}</span> doctor for <span className='font-[900] capitalize'>{valueType},{valueOrgan}</span> in <span className='font-[900]'>Zipcode:76564</span> </p>
                   </div>
                   {/* HW Filter Top Right */}
                   <div className='flex items-center gap-5'>
@@ -429,7 +427,7 @@ export default function ApiData() {
                     </div>
                     <div className='hwFilter text-[#6e2feb]'>
                       <button className='flex gap-2 items-center' onClick={openFilterModal}>
-                        <BiFilterAlt className='flex items-center text-[#6e2feb]'/> Filter
+                        <img src='../images/search/Icon.png' className='flex items-center text-[#6e2feb]'/> Filter
                       </button>
                     </div>
                   </div>
@@ -454,6 +452,14 @@ export default function ApiData() {
                             </div>
                           )}
                         </div>
+                        {filteredResults.length === 0 && (
+                            <div className="text-center mt-4 text-gray-500">
+                              <div className='max-w-full w-[115px] mx-auto'>
+                              <img src='../images/search/empty-image.png'/>
+                              </div>
+                              No matching search results found
+                            </div>
+                          )}
 
                           {filteredResults.map((item, index) => (
                           <div 
