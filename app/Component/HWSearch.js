@@ -661,6 +661,7 @@ const HWSearch = () => {
 
   const handleInputChange = (e) => {
     const input = e.target.value;
+    console.log("adde ZipCode is - : ",input)
     setSelectedZip(input);
 
     if (/^\d{1,5}$/.test(input)) {
@@ -1004,7 +1005,7 @@ const HWSearch = () => {
           href={{
             pathname: searchFor === 'Doctor' ? '/SearchResult' : '/Searchresults',
             query: {
-              search: `type=${type}&searchFor=${searchFor}&organ=${organ}`,
+              search: `type=${type}&searchFor=${searchFor}&organ=${organ}&zip_code=${selectedZip}`,
             },
           }}
         >

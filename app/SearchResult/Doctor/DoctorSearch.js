@@ -24,9 +24,9 @@ import { type } from 'os';
 //     return data;
 // }
 
-async function fetchDoctors(type, organ) {
+async function fetchDoctors(type, organ, ZipCode) {
   try {
-    const apiUrl = `https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}`;
+    const apiUrl = `https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}&zip_code=${ZipCode}`;
     const response = await fetch(apiUrl);
     const result = await response.json();
     return result;
@@ -58,6 +58,7 @@ export default function ApiData() {
     const [selectedPage, setSelectedPage] = useState(1);
     const [doctorsData, setDoctorsData] = useState([]);
     const [valueType, setType] = useState('');
+    const [zipCode, setZipCode] = useState('');
     const [valueOrgan, setOrgan] = useState("");
 
 
@@ -89,8 +90,11 @@ export default function ApiData() {
           let type = filterParams.get("type");
           let searchFor = filterParams.get("searchFor");
           let organParam = filterParams.get("organ");
+          let zipCode = filterParams.get("zip_code");
   
+          // console.log('added zid code -; ',zipCode);
           setType(type);
+          setZipCode(zipCode);
           setOrgan(organParam); // Set organ using the value from URL parameters
   
           // console.log('type setted - ', type);
@@ -100,7 +104,7 @@ export default function ApiData() {
           }
   
           // Use the fetchDoctors function to get data
-          const data = await fetchDoctors(type, organParam);
+          const data = await fetchDoctors(type, organParam,zipCode);
           // Set the data to state
           setDoctorsData(data.results);
   
