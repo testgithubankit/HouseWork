@@ -7,438 +7,438 @@ import TextField from "@mui/material/TextField";
 import HWLoader from "./HWLoader";
 import Link from "next/link";
 
-const FilterBox = ({ title }) => {
-  const [selectImage, setSelectImage] = useState("Kidney");
-  return (
-    <div className="mt-4 text-center">
-      <div className="flex flex-wrap gap-4 items-baseline">
-        <div
-          className="hwFilterBox"
-          style={{
-            border:
-              selectImage === "Kidney"
-                ? "1px solid #C8ADFF"
-                : "1px solid #C5CEE0",
-            color: selectImage === "Kidney" ? "#6E2FEB" : "#101426",
-            backgroundColor: selectImage === "Kidney" ? "#F5F0FF" : "white",
-          }}
-          onClick={() => setSelectImage("Kidney")}
-        >
-          <img
-            className=""
-            src={
-              selectImage === "Kidney"
-                ? "../images/search/kidney_active.svg"
-                : "../images/search/kidney.svg"
-            }
-            alt="React Image"
-          />
-          <span
-            className={
-              selectImage === "Kidney" ? "text-[#6E2FEB]" : "text-[#101426]"
-            }
-          >
-            Kidney
-          </span>
-        </div>
+// const FilterBox = ({ title }) => {
+//   const [selectImage, setSelectImage] = useState("Kidney");
+//   return (
+//     <div className="mt-4 text-center">
+//       <div className="flex flex-wrap gap-4 items-baseline">
+//         <div
+//           className="hwFilterBox"
+//           style={{
+//             border:
+//               selectImage === "Kidney"
+//                 ? "1px solid #C8ADFF"
+//                 : "1px solid #C5CEE0",
+//             color: selectImage === "Kidney" ? "#6E2FEB" : "#101426",
+//             backgroundColor: selectImage === "Kidney" ? "#F5F0FF" : "white",
+//           }}
+//           onClick={() => setSelectImage("Kidney")}
+//         >
+//           <img
+//             className=""
+//             src={
+//               selectImage === "Kidney"
+//                 ? "../images/search/kidney_active.svg"
+//                 : "../images/search/kidney.svg"
+//             }
+//             alt="React Image"
+//           />
+//           <span
+//             className={
+//               selectImage === "Kidney" ? "text-[#6E2FEB]" : "text-[#101426]"
+//             }
+//           >
+//             Kidney
+//           </span>
+//         </div>
 
-        <div
-          className="hwFilterBox"
-          style={{
-            border:
-              selectImage === "Lungs"
-                ? "1px solid #C8ADFF"
-                : "1px solid #C5CEE0",
-            color: selectImage === "Lungs" ? "#6E2FEB" : "#101426",
-            backgroundColor: selectImage === "Lungs" ? "#F5F0FF" : "#ffff",
-          }}
-          onClick={() => setSelectImage("Lungs")}
-        >
-          <img
-            className=""
-            src={
-              selectImage === "Lungs"
-                ? "../images/search/lungs_active.svg"
-                : "../images/search/lungs.svg"
-            }
-            alt="React Image"
-          />
-          <span
-            className={`${
-              selectImage === "Lungs" ? "text-[#6E2FEB]" : "text-[#101426]"
-            }`}
-          >
-            Lungs
-          </span>
-        </div>
-        <div
-          className="hwFilterBox"
-          style={{
-            border:
-              selectImage === "Liver"
-                ? "1px solid #C8ADFF"
-                : "1px solid #C5CEE0",
-            color: selectImage === "Liver" ? "#6E2FEB" : "#101426",
-            backgroundColor: selectImage === "Liver" ? "#F5F0FF" : "#ffff",
-          }}
-          onClick={() => setSelectImage("Liver")}
-        >
-          <img
-            className=""
-            src={
-              selectImage === "Liver"
-                ? "../images/search/liver_active.svg"
-                : "../images/search/liver.svg"
-            }
-            alt="React Image"
-          />
-          <span
-            className={`${
-              selectImage === "Liver" ? "text-[#6E2FEB]" : "text-[#101426]"
-            }`}
-          >
-            Liver
-          </span>
-        </div>
-        <div
-          className="hwFilterBox"
-          style={{
-            border:
-              selectImage === "Pancreas"
-                ? "1px solid #C8ADFF"
-                : "1px solid #C5CEE0",
-            color: selectImage === "Pancreas" ? "#6E2FEB" : "#101426",
-            backgroundColor: selectImage === "Pancreas" ? "#F5F0FF" : "#ffff",
-          }}
-          onClick={() => setSelectImage("Pancreas")}
-        >
-          <img
-            className=""
-            src={
-              selectImage === "Pancreas"
-                ? "../images/search/pancreas_active.svg"
-                : "../images/search/pancreas.svg"
-            }
-            alt="React Image"
-          />
-          <span
-            className={`${
-              selectImage === "Pancreas" ? "text-[#6E2FEB]" : "text-[#101426]"
-            }`}
-          >
-            Pancreas
-          </span>
-        </div>
-        {title}
-      </div>
-    </div>
-  );
-};
+//         <div
+//           className="hwFilterBox"
+//           style={{
+//             border:
+//               selectImage === "Lungs"
+//                 ? "1px solid #C8ADFF"
+//                 : "1px solid #C5CEE0",
+//             color: selectImage === "Lungs" ? "#6E2FEB" : "#101426",
+//             backgroundColor: selectImage === "Lungs" ? "#F5F0FF" : "#ffff",
+//           }}
+//           onClick={() => setSelectImage("Lungs")}
+//         >
+//           <img
+//             className=""
+//             src={
+//               selectImage === "Lungs"
+//                 ? "../images/search/lungs_active.svg"
+//                 : "../images/search/lungs.svg"
+//             }
+//             alt="React Image"
+//           />
+//           <span
+//             className={`${
+//               selectImage === "Lungs" ? "text-[#6E2FEB]" : "text-[#101426]"
+//             }`}
+//           >
+//             Lungs
+//           </span>
+//         </div>
+//         <div
+//           className="hwFilterBox"
+//           style={{
+//             border:
+//               selectImage === "Liver"
+//                 ? "1px solid #C8ADFF"
+//                 : "1px solid #C5CEE0",
+//             color: selectImage === "Liver" ? "#6E2FEB" : "#101426",
+//             backgroundColor: selectImage === "Liver" ? "#F5F0FF" : "#ffff",
+//           }}
+//           onClick={() => setSelectImage("Liver")}
+//         >
+//           <img
+//             className=""
+//             src={
+//               selectImage === "Liver"
+//                 ? "../images/search/liver_active.svg"
+//                 : "../images/search/liver.svg"
+//             }
+//             alt="React Image"
+//           />
+//           <span
+//             className={`${
+//               selectImage === "Liver" ? "text-[#6E2FEB]" : "text-[#101426]"
+//             }`}
+//           >
+//             Liver
+//           </span>
+//         </div>
+//         <div
+//           className="hwFilterBox"
+//           style={{
+//             border:
+//               selectImage === "Pancreas"
+//                 ? "1px solid #C8ADFF"
+//                 : "1px solid #C5CEE0",
+//             color: selectImage === "Pancreas" ? "#6E2FEB" : "#101426",
+//             backgroundColor: selectImage === "Pancreas" ? "#F5F0FF" : "#ffff",
+//           }}
+//           onClick={() => setSelectImage("Pancreas")}
+//         >
+//           <img
+//             className=""
+//             src={
+//               selectImage === "Pancreas"
+//                 ? "../images/search/pancreas_active.svg"
+//                 : "../images/search/pancreas.svg"
+//             }
+//             alt="React Image"
+//           />
+//           <span
+//             className={`${
+//               selectImage === "Pancreas" ? "text-[#6E2FEB]" : "text-[#101426]"
+//             }`}
+//           >
+//             Pancreas
+//           </span>
+//         </div>
+//         {title}
+//       </div>
+//     </div>
+//   );
+// };
 
-const Filter = ({ title }) => {
-  const [selectImage1, setSelectImage1] = useState("Lungs");
-  const [organ, setOrgan] = useState("");
-  return (
-    <div className="mt-4">
-      <div className="flex flex-row flex-wrap gap-4 items-baseline">
-        <div
-          className="hwFilterBox"
-          style={{
-            border:
-              selectImage1 === "Lungs"
-                ? "1px solid #C8ADFF"
-                : "1px solid #C5CEE0",
-            color: selectImage1 === "Lungs" ? "#6E2FEB" : "#101426",
-            backgroundColor: selectImage1 === "Lungs" ? "#F5F0FF" : "#ffff",
-          }}
-          onClick={() => setSelectImage1("Lungs")}
-        >
-          <img
-            className=""
-            src={
-              selectImage1 === "Lungs"
-                ? "../images/search/lungs_active.svg"
-                : "../images/search/lungs.svg"
-            }
-            alt="React Image"
-          />
-          <span
-            className={`${
-              selectImage1 === "Lungs" ? "text-[#6E2FEB]" : "text-[#101426]"
-            }`}
-          >
-            Lungs
-          </span>
-        </div>
-        <div
-          className="hwFilterBox"
-          style={{
-            border:
-              selectImage1 === "Liver"
-                ? "1px solid #C8ADFF"
-                : "1px solid #C5CEE0",
-            color: selectImage1 === "Liver" ? "#6E2FEB" : "#101426",
-            backgroundColor: selectImage1 === "Liver" ? "#F5F0FF" : "#ffff",
-          }}
-          onClick={() => setSelectImage1("Liver")}
-        >
-          <img
-            className=""
-            src={
-              selectImage1 === "Liver"
-                ? "../images/search/liver_active.svg"
-                : "../images/search/liver.svg"
-            }
-            alt="React Image"
-          />
-          <span
-            className={`${
-              selectImage1 === "Liver" ? "text-[#6E2FEB]" : "text-[#101426]"
-            }`}
-          >
-            Liver
-          </span>
-        </div>
-        <div
-          className="hwFilterBox"
-          style={{
-            border:
-              selectImage1 === "Pancreas"
-                ? "1px solid #C8ADFF"
-                : "1px solid #C5CEE0",
-            color: selectImage1 === "Pancreas" ? "#6E2FEB" : "#101426",
-            backgroundColor: selectImage1 === "Pancreas" ? "#F5F0FF" : "#ffff",
-          }}
-          onClick={() => setSelectImage1("Pancreas")}
-        >
-          <img
-            className=""
-            src={
-              selectImage1 === "Pancreas"
-                ? "../images/search/pancreas_active.svg"
-                : "../images/search/pancreas.svg"
-            }
-            alt="React Image"
-          />
-          <span
-            className={`${
-              selectImage1 === "Pancreas" ? "text-[#6E2FEB]" : "text-[#101426]"
-            }`}
-          >
-            Pancreas
-          </span>
-        </div>
-        <div
-          className="hwFilterBox"
-          style={{
-            border:
-              selectImage1 === "Bile duct"
-                ? "1px solid #C8ADFF"
-                : "1px solid #C5CEE0",
-            color: selectImage1 === "Bile duct" ? "#6E2FEB" : "#101426",
-            backgroundColor: selectImage1 === "Bile duct" ? "#F5F0FF" : "#ffff",
-          }}
-          onClick={() => setSelectImage1("Bile duct")}
-        >
-          <img
-            className=""
-            src={
-              selectImage1 === "Bile duct"
-                ? "../images/search/bile_duct_active.svg"
-                : "../images/search/bile_duct.svg"
-            }
-            alt="React Image"
-          />
-          <span
-            className={`${
-              selectImage1 === "Bile duct" ? "text-[#6E2FEB]" : "text-[#101426]"
-            }`}
-          >
-            Bile duct
-          </span>
-        </div>
-        <div
-          className="hwFilterBox"
-          style={{
-            border:
-              selectImage1 === "Adrenal"
-                ? "1px solid #C8ADFF"
-                : "1px solid #C5CEE0",
-            color: selectImage1 === "Adrenal" ? "#6E2FEB" : "#101426",
-            backgroundColor: selectImage1 === "Adrenal" ? "#F5F0FF" : "#ffff",
-          }}
-          onClick={() => setSelectImage1("Adrenal")}
-        >
-          <img
-            className=""
-            src={
-              selectImage1 === "Adrenal"
-                ? "../images/search/adrenal_active.svg"
-                : "../images/search/adrenal.svg"
-            }
-            alt="React Image"
-          />
-          <span
-            className={`${
-              selectImage1 === "Adrenal" ? "text-[#6E2FEB]" : "text-[#101426]"
-            }`}
-          >
-            Adrenal
-          </span>
-        </div>
-        <div
-          className="hwFilterBox"
-          style={{
-            border:
-              selectImage1 === "Rectum"
-                ? "1px solid #C8ADFF"
-                : "1px solid #C5CEE0",
-            color: selectImage1 === "Rectum" ? "#6E2FEB" : "#101426",
-            backgroundColor: selectImage1 === "Rectum" ? "#F5F0FF" : "#ffff",
-          }}
-          onClick={() => setSelectImage1("Rectum")}
-        >
-          <img
-            className=""
-            src={
-              selectImage1 === "Rectum"
-                ? "../images/search/rectum_active.svg"
-                : "../images/search/rectum.svg"
-            }
-            alt="React Image"
-          />
-          <span
-            className={`${
-              selectImage1 === "Rectum" ? "text-[#6E2FEB]" : "text-[#101426]"
-            }`}
-          >
-            Rectum
-          </span>
-        </div>
-        <div
-          className="hwFilterBox"
-          style={{
-            border:
-              selectImage1 === "Breast"
-                ? "1px solid #C8ADFF"
-                : "1px solid #C5CEE0",
-            color: selectImage1 === "Breast" ? "#6E2FEB" : "#101426",
-            backgroundColor: selectImage1 === "Breast" ? "#F5F0FF" : "#ffff",
-          }}
-          onClick={() => setSelectImage1("Breast")}
-        >
-          <img
-            className=""
-            src={
-              selectImage1 === "Breast"
-                ? "../images/search/breast_active.svg"
-                : "../images/search/breast.svg"
-            }
-            alt="React Image"
-          />
-          <span
-            className={`${
-              selectImage1 === "Breast" ? "text-[#6E2FEB]" : "text-[#101426]"
-            }`}
-          >
-            Breast
-          </span>
-        </div>
-        <div
-          className="hwFilterBox"
-          style={{
-            border:
-              selectImage1 === "Small intestine"
-                ? "1px solid #C8ADFF"
-                : "1px solid #C5CEE0",
-            color: selectImage1 === "LSmall intestine" ? "#6E2FEB" : "#101426",
-            backgroundColor:
-              selectImage1 === "Small intestine" ? "#F5F0FF" : "#ffff",
-          }}
-          onClick={() => setSelectImage1("Small intestine")}
-        >
-          <img
-            className=""
-            src={
-              selectImage1 === "Small intestine"
-                ? "../images/search/small_intestine_active.svg"
-                : "../images/search/small_intestine.svg"
-            }
-            alt="React Image"
-          />
-          <span
-            className={`${
-              selectImage1 === "Small intestine"
-                ? "text-[#6E2FEB]"
-                : "text-[#101426]"
-            }`}
-          >
-            Small intestine
-          </span>
-        </div>
-        <div
-          className="hwFilterBox"
-          style={{
-            border:
-              selectImage1 === "Stomach"
-                ? "1px solid #C8ADFF"
-                : "1px solid #C5CEE0",
-            color: selectImage1 === "Stomach" ? "#6E2FEB" : "#101426",
-            backgroundColor: selectImage1 === "Stomach" ? "#F5F0FF" : "#ffff",
-          }}
-          onClick={() => setSelectImage1("Stomach")}
-        >
-          <img
-            className=""
-            src={
-              selectImage1 === "Stomach"
-                ? "../images/search/stomach_active.svg"
-                : "../images/search/stomach.svg"
-            }
-            alt="React Image"
-          />
-          <span
-            className={`${
-              selectImage1 === "Stomach" ? "text-[#6E2FEB]" : "text-[#101426]"
-            }`}
-          >
-            Stomach
-          </span>
-        </div>
-        <div
-          className="hwFilterBox"
-          style={{
-            border:
-              selectImage1 === "Colon"
-                ? "1px solid #C8ADFF"
-                : "1px solid #C5CEE0",
-            color: selectImage1 === "Colon" ? "#6E2FEB" : "#101426",
-            backgroundColor: selectImage1 === "Colon" ? "#F5F0FF" : "#ffff",
-          }}
-          onClick={() => setSelectImage1("Colon")}
-        >
-          <img
-            className="w-[40px]"
-            src={
-              selectImage1 === "Colon"
-                ? "../images/search/colon_active.png"
-                : "../images/search/colon.png"
-            }
-            alt="React Image"
-          />
-          <span
-            className={`${
-              selectImage1 === "Colon" ? "text-[#6E2FEB]" : "text-[#101426]"
-            }`}
-          >
-            Colon
-          </span>
-        </div>
-        {title}
-      </div>
-    </div>
-  );
-};
+// const Filter = ({ title }) => {
+//   const [selectImage1, setSelectImage1] = useState("Lungs");
+//   const [organ, setOrgan] = useState("");
+//   return (
+//     <div className="mt-4">
+//       <div className="flex flex-row flex-wrap gap-4 items-baseline">
+//         <div
+//           className="hwFilterBox"
+//           style={{
+//             border:
+//               selectImage1 === "Lungs"
+//                 ? "1px solid #C8ADFF"
+//                 : "1px solid #C5CEE0",
+//             color: selectImage1 === "Lungs" ? "#6E2FEB" : "#101426",
+//             backgroundColor: selectImage1 === "Lungs" ? "#F5F0FF" : "#ffff",
+//           }}
+//           onClick={() => setSelectImage1("Lungs")}
+//         >
+//           <img
+//             className=""
+//             src={
+//               selectImage1 === "Lungs"
+//                 ? "../images/search/lungs_active.svg"
+//                 : "../images/search/lungs.svg"
+//             }
+//             alt="React Image"
+//           />
+//           <span
+//             className={`${
+//               selectImage1 === "Lungs" ? "text-[#6E2FEB]" : "text-[#101426]"
+//             }`}
+//           >
+//             Lungs
+//           </span>
+//         </div>
+//         <div
+//           className="hwFilterBox"
+//           style={{
+//             border:
+//               selectImage1 === "Liver"
+//                 ? "1px solid #C8ADFF"
+//                 : "1px solid #C5CEE0",
+//             color: selectImage1 === "Liver" ? "#6E2FEB" : "#101426",
+//             backgroundColor: selectImage1 === "Liver" ? "#F5F0FF" : "#ffff",
+//           }}
+//           onClick={() => setSelectImage1("Liver")}
+//         >
+//           <img
+//             className=""
+//             src={
+//               selectImage1 === "Liver"
+//                 ? "../images/search/liver_active.svg"
+//                 : "../images/search/liver.svg"
+//             }
+//             alt="React Image"
+//           />
+//           <span
+//             className={`${
+//               selectImage1 === "Liver" ? "text-[#6E2FEB]" : "text-[#101426]"
+//             }`}
+//           >
+//             Liver
+//           </span>
+//         </div>
+//         <div
+//           className="hwFilterBox"
+//           style={{
+//             border:
+//               selectImage1 === "Pancreas"
+//                 ? "1px solid #C8ADFF"
+//                 : "1px solid #C5CEE0",
+//             color: selectImage1 === "Pancreas" ? "#6E2FEB" : "#101426",
+//             backgroundColor: selectImage1 === "Pancreas" ? "#F5F0FF" : "#ffff",
+//           }}
+//           onClick={() => setSelectImage1("Pancreas")}
+//         >
+//           <img
+//             className=""
+//             src={
+//               selectImage1 === "Pancreas"
+//                 ? "../images/search/pancreas_active.svg"
+//                 : "../images/search/pancreas.svg"
+//             }
+//             alt="React Image"
+//           />
+//           <span
+//             className={`${
+//               selectImage1 === "Pancreas" ? "text-[#6E2FEB]" : "text-[#101426]"
+//             }`}
+//           >
+//             Pancreas
+//           </span>
+//         </div>
+//         <div
+//           className="hwFilterBox"
+//           style={{
+//             border:
+//               selectImage1 === "Bile duct"
+//                 ? "1px solid #C8ADFF"
+//                 : "1px solid #C5CEE0",
+//             color: selectImage1 === "Bile duct" ? "#6E2FEB" : "#101426",
+//             backgroundColor: selectImage1 === "Bile duct" ? "#F5F0FF" : "#ffff",
+//           }}
+//           onClick={() => setSelectImage1("Bile duct")}
+//         >
+//           <img
+//             className=""
+//             src={
+//               selectImage1 === "Bile duct"
+//                 ? "../images/search/bile_duct_active.svg"
+//                 : "../images/search/bile_duct.svg"
+//             }
+//             alt="React Image"
+//           />
+//           <span
+//             className={`${
+//               selectImage1 === "Bile duct" ? "text-[#6E2FEB]" : "text-[#101426]"
+//             }`}
+//           >
+//             Bile duct
+//           </span>
+//         </div>
+//         <div
+//           className="hwFilterBox"
+//           style={{
+//             border:
+//               selectImage1 === "Adrenal"
+//                 ? "1px solid #C8ADFF"
+//                 : "1px solid #C5CEE0",
+//             color: selectImage1 === "Adrenal" ? "#6E2FEB" : "#101426",
+//             backgroundColor: selectImage1 === "Adrenal" ? "#F5F0FF" : "#ffff",
+//           }}
+//           onClick={() => setSelectImage1("Adrenal")}
+//         >
+//           <img
+//             className=""
+//             src={
+//               selectImage1 === "Adrenal"
+//                 ? "../images/search/adrenal_active.svg"
+//                 : "../images/search/adrenal.svg"
+//             }
+//             alt="React Image"
+//           />
+//           <span
+//             className={`${
+//               selectImage1 === "Adrenal" ? "text-[#6E2FEB]" : "text-[#101426]"
+//             }`}
+//           >
+//             Adrenal
+//           </span>
+//         </div>
+//         <div
+//           className="hwFilterBox"
+//           style={{
+//             border:
+//               selectImage1 === "Rectum"
+//                 ? "1px solid #C8ADFF"
+//                 : "1px solid #C5CEE0",
+//             color: selectImage1 === "Rectum" ? "#6E2FEB" : "#101426",
+//             backgroundColor: selectImage1 === "Rectum" ? "#F5F0FF" : "#ffff",
+//           }}
+//           onClick={() => setSelectImage1("Rectum")}
+//         >
+//           <img
+//             className=""
+//             src={
+//               selectImage1 === "Rectum"
+//                 ? "../images/search/rectum_active.svg"
+//                 : "../images/search/rectum.svg"
+//             }
+//             alt="React Image"
+//           />
+//           <span
+//             className={`${
+//               selectImage1 === "Rectum" ? "text-[#6E2FEB]" : "text-[#101426]"
+//             }`}
+//           >
+//             Rectum
+//           </span>
+//         </div>
+//         <div
+//           className="hwFilterBox"
+//           style={{
+//             border:
+//               selectImage1 === "Breast"
+//                 ? "1px solid #C8ADFF"
+//                 : "1px solid #C5CEE0",
+//             color: selectImage1 === "Breast" ? "#6E2FEB" : "#101426",
+//             backgroundColor: selectImage1 === "Breast" ? "#F5F0FF" : "#ffff",
+//           }}
+//           onClick={() => setSelectImage1("Breast")}
+//         >
+//           <img
+//             className=""
+//             src={
+//               selectImage1 === "Breast"
+//                 ? "../images/search/breast_active.svg"
+//                 : "../images/search/breast.svg"
+//             }
+//             alt="React Image"
+//           />
+//           <span
+//             className={`${
+//               selectImage1 === "Breast" ? "text-[#6E2FEB]" : "text-[#101426]"
+//             }`}
+//           >
+//             Breast
+//           </span>
+//         </div>
+//         <div
+//           className="hwFilterBox"
+//           style={{
+//             border:
+//               selectImage1 === "Small intestine"
+//                 ? "1px solid #C8ADFF"
+//                 : "1px solid #C5CEE0",
+//             color: selectImage1 === "LSmall intestine" ? "#6E2FEB" : "#101426",
+//             backgroundColor:
+//               selectImage1 === "Small intestine" ? "#F5F0FF" : "#ffff",
+//           }}
+//           onClick={() => setSelectImage1("Small intestine")}
+//         >
+//           <img
+//             className=""
+//             src={
+//               selectImage1 === "Small intestine"
+//                 ? "../images/search/small_intestine_active.svg"
+//                 : "../images/search/small_intestine.svg"
+//             }
+//             alt="React Image"
+//           />
+//           <span
+//             className={`${
+//               selectImage1 === "Small intestine"
+//                 ? "text-[#6E2FEB]"
+//                 : "text-[#101426]"
+//             }`}
+//           >
+//             Small intestine
+//           </span>
+//         </div>
+//         <div
+//           className="hwFilterBox"
+//           style={{
+//             border:
+//               selectImage1 === "Stomach"
+//                 ? "1px solid #C8ADFF"
+//                 : "1px solid #C5CEE0",
+//             color: selectImage1 === "Stomach" ? "#6E2FEB" : "#101426",
+//             backgroundColor: selectImage1 === "Stomach" ? "#F5F0FF" : "#ffff",
+//           }}
+//           onClick={() => setSelectImage1("Stomach")}
+//         >
+//           <img
+//             className=""
+//             src={
+//               selectImage1 === "Stomach"
+//                 ? "../images/search/stomach_active.svg"
+//                 : "../images/search/stomach.svg"
+//             }
+//             alt="React Image"
+//           />
+//           <span
+//             className={`${
+//               selectImage1 === "Stomach" ? "text-[#6E2FEB]" : "text-[#101426]"
+//             }`}
+//           >
+//             Stomach
+//           </span>
+//         </div>
+//         <div
+//           className="hwFilterBox"
+//           style={{
+//             border:
+//               selectImage1 === "Colon"
+//                 ? "1px solid #C8ADFF"
+//                 : "1px solid #C5CEE0",
+//             color: selectImage1 === "Colon" ? "#6E2FEB" : "#101426",
+//             backgroundColor: selectImage1 === "Colon" ? "#F5F0FF" : "#ffff",
+//           }}
+//           onClick={() => setSelectImage1("Colon")}
+//         >
+//           <img
+//             className="w-[40px]"
+//             src={
+//               selectImage1 === "Colon"
+//                 ? "../images/search/colon_active.png"
+//                 : "../images/search/colon.png"
+//             }
+//             alt="React Image"
+//           />
+//           <span
+//             className={`${
+//               selectImage1 === "Colon" ? "text-[#6E2FEB]" : "text-[#101426]"
+//             }`}
+//           >
+//             Colon
+//           </span>
+//         </div>
+//         {title}
+//       </div>
+//     </div>
+//   );
+// };
 
 const HWSearch = () => {
   const [selectedTab, setSelectedTab] = useState(1);
@@ -463,6 +463,7 @@ const HWSearch = () => {
   const [organ, setOrgan] = useState("");
   const [error, setError] = useState("");
   const [selectImage, setSelectImage] = useState("kidney");
+  const [selectImage1, setSelectImage1] = useState("Lungs");
 
   const handleTypeSelection = (selectedType) => {
     handleOptionClick(selectedType);
@@ -473,23 +474,23 @@ const HWSearch = () => {
     console.log("Selected Type:", selectedType);
     setType(selectedType);
 
-    // Redirect to the search results page with the selected type
-    // router.push(`/searchView?type=${selectedType}`);
   };
 
   useEffect(() => {
     // Additional logic to handle the default selection if needed
-    handleOrganSelection("kidney");
-  }, []);
+    if (type === "transplant") {
+      handleOrganSelection("kidney");
+    } else if (type === "oncology") {
+      handleOrganSelection("lungs");
+    }
+  }, [type]);
 
   const handleOrganSelection = (selectedOrgan) => {
     // setSelectImage(selectedOrgan);
     setSelectImage(selectedOrgan);
+    setSelectImage1(selectedOrgan)
     console.log("Selected Organ:", selectedOrgan);
     setOrgan(selectedOrgan);
-
-    // Redirect to the search results page with the selected organ
-    // router.push(`/searchView?organ=${selectedOrgan}&type=${type}`);
   };
 
   const getOrganOptions = () => {
@@ -927,34 +928,47 @@ const HWSearch = () => {
                         <div className="flex flex-wrap gap-4 items-baseline">
                           {getOrganOptions().map((option) => (
                             <button
-                            style={{
-                              border: selectImage === option ? "1px solid #C8ADFF" : "1px solid #C5CEE0",
-                              color: selectImage === option ? "#6E2FEB" : "#101426",
-                              backgroundColor: selectImage === option ? "#F5F0FF" : "white",
-                              padding: "20px",
-                              borderRadius: "10px",
-                              maxWidth: "100%",
-                              width: "85px",
-                              height: "101px",
-                              fontSize: "14px"
-                            }}
+                              style={{
+                                border:
+                                  (type === "transplant" && selectImage === option) ||
+                                  (type === "oncology" && selectImage1 === option)
+                                    ? "1px solid #C8ADFF"
+                                    : "1px solid #C5CEE0",
+                                color:
+                                  (type === "transplant" && selectImage === option) ||
+                                  (type === "oncology" && selectImage1 === option)
+                                    ? "#6E2FEB"
+                                    : "#101426",
+                                backgroundColor:
+                                  (type === "transplant" && selectImage === option) ||
+                                  (type === "oncology" && selectImage1 === option)
+                                    ? "#F5F0FF"
+                                    : "white",
+                                padding: "20px",
+                                borderRadius: "10px",
+                                maxWidth: "100%",
+                                width: "85px",
+                                height: "101px",
+                                fontSize: "14px",
+                              }}
                               key={option}
                               onClick={() => handleOrganSelection(option)}
                             >
-                              <img
-                                className=""
-                                // src={`../images/search/${option}.svg`}
-                                src={
-                                  selectImage == `${option}`
-                                    ? `../images/search/${option}_active.svg`
-                                    : `../images/search/${option}.svg`
-                                }
-                                alt="React Image"
-                              />
-                              {option.charAt(0).toUpperCase() + option.slice(1)}
-                            </button>
-                          ))}
-                        </div>
+                          <img
+                            className=""
+                            src={
+                              (type === "transplant" && selectImage === option) ||
+                              (type === "oncology" && selectImage1 === option)
+                                ? `../images/search/${option}_active.svg`
+                                : `../images/search/${option}.svg`
+                            }
+                            alt="React Image"
+                          />
+                          {option.charAt(0).toUpperCase() + option.slice(1)}
+                        </button>
+                      ))}
+                      </div>
+
                       </div>
                     </div>
                   </>
