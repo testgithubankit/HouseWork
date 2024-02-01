@@ -449,6 +449,14 @@ export default function ApiData() {
                             </div>
                           )}
                         </div>
+                        {filteredResults.length === 0 && (
+                            <div className="text-center mt-4 text-gray-500">
+                              <div className='max-w-full w-[115px] mx-auto'>
+                              <img src='../images/search/empty-image.png'/>
+                              </div>
+                              No matching search results found
+                            </div>
+                          )}
 
                           {filteredResults.map((item, index) => (
                           <div 
