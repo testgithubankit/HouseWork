@@ -24,11 +24,14 @@ import { type } from 'os';
 //     return data;
 // }
 
-async function fetchDoctors(type, organ) {
+async function fetchDoctors(type, organ, zipCode) {
+  // const zipCode=zip_code;t
+  // console.log('zip ',zipCode);
   try {
-    const apiUrl = `https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}`;
+    const apiUrl = `https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}&zip_code=${zipCode}`;
     const response = await fetch(apiUrl);
     const result = await response.json();
+    console.log(result);
     return result;
   } catch (error) {
     console.error("Error fetching doctors:", error);
@@ -58,6 +61,7 @@ export default function ApiData() {
     const [selectedPage, setSelectedPage] = useState(1);
     const [doctorsData, setDoctorsData] = useState([]);
     const [valueType, setType] = useState('');
+    const [zipCode, setZipCode] = useState('');
     const [valueOrgan, setOrgan] = useState("");
 
 
@@ -89,17 +93,22 @@ export default function ApiData() {
           let type = filterParams.get("type");
           let searchFor = filterParams.get("searchFor");
           let organParam = filterParams.get("organ");
+          let zipCode = filterParams.get("zip_code");
   
+         
           setType(type);
-          setOrgan(organParam); 
+          setZipCode(zipCode);
+          setOrgan(organParam); // Set organ using the value from URL parameters
   
+          // console.log('type setted - ', type);
   
           if (organParam === 'small intestine') {
             organParam = 'small_intestine';
           }
   
+           console.log('added zid code -;', zipCode);
           // Use the fetchDoctors function to get data
-          const data = await fetchDoctors(type, organParam);
+          const data = await fetchDoctors(type, organParam, zipCode);
           // Set the data to state
           setDoctorsData(data.results);
   
@@ -295,7 +304,7 @@ export default function ApiData() {
 
                             <div className="flex justify-start items-center py-10 gap-4 sm:h-[140px]">
                                 <div>
-                                  <img className="min-w-[50px]" src="https://househealthinc.com/wp-content/themes/blocksy-child/images/specialities.svg" />
+                                  <img className="min-w-[50px]" src="../images/specialities.svg" />
                                 </div>
                                 <div className="font-semibold text-[#101426]">Specialities</div>
                             </div>
@@ -412,7 +421,7 @@ export default function ApiData() {
               <div className='flex items-center justify-between p-4 max-w-[1355px] mx-auto'>
                   {/* HW Filter Top Left */}
                   <div className=''>
-                  <p className='text-[15px]'>Showing <span className='font-[900]'>{doctorsData.length}</span> doctor for <span className='font-[900] capitalize'>{valueType},{valueOrgan}</span> in <span className='font-[900]'>Zipcode:76564</span> </p>
+                  <p>Showing <span className='font-semibold'>{doctorsData.length}</span> doctor for {valueType} , for {valueOrgan} </p>
                   </div>
                   {/* HW Filter Top Right */}
                   <div className='flex items-center gap-5'>
@@ -424,7 +433,7 @@ export default function ApiData() {
                     </div>
                     <div className='hwFilter text-[#6e2feb]'>
                       <button className='flex gap-2 items-center' onClick={openFilterModal}>
-                        <img src='../images/search/Icon.png' className='flex items-center text-[#6e2feb]'/> Filter
+                        <BiFilterAlt className='flex items-center text-[#6e2feb]'/> Filter
                       </button>
                     </div>
                   </div>
@@ -449,14 +458,6 @@ export default function ApiData() {
                             </div>
                           )}
                         </div>
-                        {filteredResults.length === 0 && (
-                            <div className="text-center mt-4 text-gray-500">
-                              <div className='max-w-full w-[115px] mx-auto'>
-                              <img src='../images/search/empty-image.png'/>
-                              </div>
-                              No matching search results found
-                            </div>
-                          )}
 
                           {filteredResults.map((item, index) => (
                           <div 
