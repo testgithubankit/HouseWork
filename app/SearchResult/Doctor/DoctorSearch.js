@@ -36,7 +36,7 @@ async function fetchDoctors(type, organ) {
   }
 }
 
-export default function ApiData({data}) {
+export default function ApiData() {
     const [searchTerm, setSearchTerm] = useState('');
     const [results, setResults] = useState([]);
 
