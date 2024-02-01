@@ -424,7 +424,7 @@ export default function ApiData() {
                     </div>
                     <div className='hwFilter text-[#6e2feb]'>
                       <button className='flex gap-2 items-center' onClick={openFilterModal}>
-                        <BiFilterAlt className='flex items-center text-[#6e2feb]'/> Filter
+                        <img src='../images/search/Icon.png' className='flex items-center text-[#6e2feb]'/> Filter
                       </button>
                     </div>
                   </div>
