@@ -951,7 +951,7 @@ const HWSearch = () => {
                                   (type === "oncology" && selectImage1 === option)
                                     ? "#F5F0FF"
                                     : "white",
-                                padding: "20px 10px",
+                                padding: "20px",
                                 borderRadius: "10px",
                                 maxWidth: "100%",
                                 width: "85px",
