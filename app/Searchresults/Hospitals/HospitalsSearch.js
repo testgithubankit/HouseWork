@@ -110,7 +110,7 @@ export default function ApiData() {
   
       fetchData();
     }, []);
-    
+
     // Filter Pagination 
     const loadMore = () => {
       if (page < totalPages) {
