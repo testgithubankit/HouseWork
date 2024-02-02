@@ -417,7 +417,7 @@ export default function ApiData() {
               <div className='flex items-center justify-between p-4 max-w-[1355px] mx-auto'>
                   {/* HW Filter Top Left */}
                   <div className=''>
-                  <p className='text-[17px]'>Showing <span className='font-bold text-[#101426CC]'>{doctorsData.length}</span> doctors for <span className='font-bold capitalize text-[#101426CC]'>{valueType} {valueOrgan}</span> </p>
+                  <p className='text-[17px]'>Showing <span className='font-bold text-[#101426CC]'>{doctorsData.length}</span> doctors for <span className='font-bold capitalize text-[#101426CC]'>{valueType},{valueOrgan}</span> </p>
                   </div>
                   {/* HW Filter Top Right */}
                   <div className='flex items-center gap-5'>
