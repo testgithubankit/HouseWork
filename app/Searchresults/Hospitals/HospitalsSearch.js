@@ -15,8 +15,8 @@ import {GrClose} from 'react-icons/gr';
 import Modal from 'react-modal';
 import { type } from 'os';
 
-async function fetchDoctors(type, organ) {
-    const response = await fetch(`https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}`)
+async function fetchHospitals(type) {
+    const response = await fetch(`https://api.coc.houseworksinc.co/api/v1/hospitals/?type=${type}`)
     const data = await response.json();
     return data;
 }
@@ -43,20 +43,20 @@ export default function ApiData() {
     const [selectedItemID, setSelectedItemID] = useState(null);
     const [selectedPage, setSelectedPage] = useState(1);
 
-    const [type, setType] = useState('');
+    const [valueType, setType] = useState('');
     const [searchFor, setSearchFor] = useState('');
-    const [organ, setOrgan] = useState(''); 
+    // const [organ, setOrgan] = useState(''); 
 
     // Capitalize the first letter of each word
     function capitalizeString(str) {
-      if (typeof str !== 'string' || str.trim() === '') {
-          // If str is not a string or is an empty string, return an empty string or handle it accordingly.
-          return '';
-      }
-      return str.replace(/\w\S*/g, function (txt) {
+      if (typeof str !== 'undefined') {
+        return str.replace(/\w\S*/g, function (txt) {
           return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      });
-  }
+        });
+      } else {
+        return ''; // Or handle the case when str is undefined in the way that suits your application
+      }
+    }
 
     //Add Search Icon in Search Filter
     const handleSearchInputChange = (event) => {
@@ -93,17 +93,16 @@ export default function ApiData() {
         // Get values for type, searchFor, and organ
         let type = filterParams.get("type");
         let searchFor = filterParams.get("searchFor");
-        let organ = filterParams.get("organ");
+        // let organ = filterParams.get("organ");
+        setType(type);
   
-        console.log(type, searchFor, organ);
+        console.log(type, searchFor);
   
         try {
-          console.log(type,organ);
-          const apiUrl=`https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}`;
-          const response = await fetch(apiUrl);
-          const result = await response.json();
-          setDoctorsData(result.results);
-          console.log(result);
+          // console.log(type,organ);
+          const data = await fetchHospitals(type);
+          setDoctorsData(data.results);
+          // console.log(data);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -140,7 +139,7 @@ export default function ApiData() {
     // Result Load Code
     useEffect(() => {
       async function loadResults() {
-        const data = await  fetchDoctors(type, organ);
+        const data = await  fetchHospitals(type);
         setResults(data.results);
         setTotalDataCount(data.count);
         setTotalPages(Math.ceil(data.count / perPage));
@@ -172,7 +171,7 @@ export default function ApiData() {
     
     useEffect(() => {
       async function loadDefaultHospital(){
-        const data = await fetchDoctors(1,1);
+        const data = await fetchHospitals(1,1);
         setResults(data.results);
         if (data.results && data.results.length > 0) {
           setShowZipCode(data.results[0].id);
@@ -220,9 +219,9 @@ export default function ApiData() {
 
     const filteredResults = (results || []).filter((item) => {
       if (searchTerm === "") {
-          return true;
-      } else if (item.facility_name.toLowerCase().includes(searchTerm.toLowerCase())) {
-          return true;
+        return true;
+      } else if (item && item.facility_name && item.facility_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+        return true;
       }
       return false;
     });
@@ -276,17 +275,6 @@ export default function ApiData() {
                             </div>
 
                             <div className="flex items-center py-10 gap-4 sm:h-[140px]">
-                            <h1>Filtered Doctors</h1>
-                          <ul>
-                            {doctorsData.map((doctor) => (
-                              <li key={doctor.id}>
-                                <h3>{`${doctor.first_name} ${doctor.last_name}`}</h3>
-                                <p>NPI: {doctor.npi}</p>
-                                <p>Speciality: {doctor.primary_speciality}</p>
-                                {/* Add more details as needed */}
-                              </li>
-                            ))}
-                          </ul>
                                 <div>
                                   <img className="min-w-[50px]" src="../images/search/education_training.svg" />
                                 </div>
@@ -408,7 +396,7 @@ export default function ApiData() {
               <div className='flex items-center justify-between p-4 max-w-[1355px] mx-auto'>
                   {/* HW Filter Top Left */}
                   <div className=''>
-                    <p>Showing <span className='font-semibold'>{totalDataCount}</span> results</p>
+                    <p>Showing <span className='font-semibold'>{doctorsData.length} hospital for {valueType} </span></p>
                   </div>
                   {/* HW Filter Top Right */}
                   <div className='flex items-center gap-5'>
@@ -467,7 +455,7 @@ export default function ApiData() {
                                 </div>
                               <h3 onClick={() => openModal(item)} 
                               className="cursor-pointer text-[#101426CC] font-extrabold">
-                              {`${capitalizeString(item.first_name)}`} {`${capitalizeString(item.last_name)}`}
+                              {`${capitalizeString(item.facility_name)}`} {`${capitalizeString(item.last_name)}`}
                               </h3>
                               <div className="flex">
                                 <PiShareNetwork className="text-2xl text-[#8F9BB3]" />
@@ -537,20 +525,20 @@ export default function ApiData() {
                           {/* ###Filter Pagination Start*/}
                           <div className='hwFitlerPagination mt-4 text-center'>
                             <div className='flex p-4 items-center justify-center gap-1 border-gray-200'>
-                              {/* <button
+                             <button
                               className='inline-flex shadow-md items-center rounded-md text-sm px-3 py-2 text-gray-600 ring-1 hover:text-[#fff] ring-inset bg-[#f7f9fc] hover:bg-[#6E2FEB] ring-gray-100 focus:z-20 focus:outline-offset-0' 
-                              onClick={loadPrevious} disabled={page === 1}>Prev</button> */}
+                              onClick={loadPrevious} disabled={page === 1}>Prev</button> 
                               
-                              {/* {generatePageNumbers().map((pageNumber) => (
+                              {generatePageNumbers().map((pageNumber) => (
                                 <button className='
                                   relative inline-flex shadow-md items-center px-4 py-2 text-sm font-semibold text-gray-900 hover:text-[#fff] bg-[#f7f9fc] rounded-md ring-1 ring-inset ring-gray-100 hover:bg-[#6E2FEB] focus:z-20 focus:outline-offset-0
                                   ' key={pageNumber} onClick={() => setPage(pageNumber)}>{pageNumber}</button>
-                              ))} */}
+                              ))}
                               <p className='hidden'><span className='
                               relative shadow-md inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 rounded-md hover:bg-gray-50 focus:z-20 focus:outline-offset-0'>...</span> {totalDataCount}</p>
-                              {/* <button 
+                              <button 
                               className='shadow-md inline-flex items-center bg-[#f7f9fc] rounded-md text-sm px-3 py-2 ring-1 ring-inset hover:text-[#fff] text-grey-600 hover:bg-[#6E2FEB] ring-gray-100 focus:z-20 focus:outline-offset-0'
-                              onClick={loadMore} disabled={page === totalPages}>Next</button> */}
+                              onClick={loadMore} disabled={page === totalPages}>Next</button>
                             </div>
                           </div>{/* ###Filter Pagination End*/}
 
@@ -581,7 +569,7 @@ export default function ApiData() {
                                           <div key={index} className='detailsInner w-full ease-in-out duration-1500'>
                                             <div className="py-4 detailsTitle text-[#101426]">
                                                 <h2 className="text-3xl font-semibold m-b-3 text-[#101426]">
-                                                {`${capitalizeString(item.first_name)}`}
+                                                {`${capitalizeString(item.facility_name)}`}
                                                 </h2>
                                                 <div class="flex space-x-4 py-4 text-sm font-medium">
                                                     <div class="flex-auto flex justify-start items-center font-semibold">

@@ -951,7 +951,7 @@ const HWSearch = () => {
                                   (type === "oncology" && selectImage1 === option)
                                     ? "#F5F0FF"
                                     : "white",
-                                padding: "20px",
+                                padding: "20px 10px",
                                 borderRadius: "10px",
                                 maxWidth: "100%",
                                 width: "85px",
@@ -1024,7 +1024,7 @@ const HWSearch = () => {
           href={{
             pathname: searchFor === 'Doctor' ? '/SearchResult' : '/Searchresults',
             query: {
-              search: `type=${type}&searchFor=${searchFor}&organ=${organ}`,
+              search: `type=${type}&searchFor=${searchFor}${searchFor === 'Doctor' ? `&organ=${organ}` : ''}`,
             },
           }}
         >
