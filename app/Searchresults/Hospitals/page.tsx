@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 import HospitalsSearch from './HospitalsSearch';
+import HospitalDataSearch from './HospitalDataSearch';
 // import SubmitCaseForReview from '@/Components/SubmitCaseForReview';
 
 
