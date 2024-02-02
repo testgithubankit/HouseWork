@@ -24,11 +24,9 @@ import { type } from 'os';
 //     return data;
 // }
 
-async function fetchDoctors(type, organ, zipCode) {
-  // const zipCode=zip_code;t
-  // console.log('zip ',zipCode);
+async function fetchDoctors(type, organ) {
   try {
-    const apiUrl = `https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}&zip_code=${zipCode}`;
+    const apiUrl = `https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}`;
     const response = await fetch(apiUrl);
     const result = await response.json();
     console.log(result);
@@ -61,7 +59,7 @@ export default function ApiData() {
     const [selectedPage, setSelectedPage] = useState(1);
     const [doctorsData, setDoctorsData] = useState([]);
     const [valueType, setType] = useState('');
-    const [zipCode, setZipCode] = useState('');
+    // const [valuezipCode, setZipCode] = useState('');
     const [valueOrgan, setOrgan] = useState("");
 
 
@@ -83,21 +81,18 @@ export default function ApiData() {
           // console.log(window.location);
           let myKeys = window.location.search;
           // console.log("k & V :", myKeys);
-  
           let urlParams = new URLSearchParams(myKeys);
-  
           let param1 = urlParams.get("search");
-  
           let filterParams = new URLSearchParams(param1);
-  
+
           let type = filterParams.get("type");
           let searchFor = filterParams.get("searchFor");
           let organParam = filterParams.get("organ");
-          let zipCode = filterParams.get("zip_code");
+          // let zip_codes = filterParams.get("zip_codes");
   
          
           setType(type);
-          setZipCode(zipCode);
+          // setZipCode(zip_codes);
           setOrgan(organParam); // Set organ using the value from URL parameters
   
           // console.log('type setted - ', type);
@@ -106,11 +101,12 @@ export default function ApiData() {
             organParam = 'small_intestine';
           }
   
-           console.log('added zid code -;', zipCode);
+          //  console.log('added zid code -;', Zipcodes);
           // Use the fetchDoctors function to get data
-          const data = await fetchDoctors(type, organParam, zipCode);
+          const data = await fetchDoctors(type, organParam);
           // Set the data to state
           setDoctorsData(data.results);
+          
   
           // console.log(data);
         } catch (error) {
@@ -119,7 +115,7 @@ export default function ApiData() {
       };
   
       fetchData();
-    }, []); 
+    },[]); 
 
     //Loader 
     const [isLoading, setIsLoading] = useState(true);
@@ -273,7 +269,7 @@ export default function ApiData() {
       setSelectedItems(selectedItems.filter((id) => id !== itemId));
     };
     return (
-        <>
+        <>  
           {isLoading ? ( <HWLoader />) : (
             <>
             <div className='w-full bg-[#fff] z-40 '>
@@ -421,7 +417,7 @@ export default function ApiData() {
               <div className='flex items-center justify-between p-4 max-w-[1355px] mx-auto'>
                   {/* HW Filter Top Left */}
                   <div className=''>
-                  <p>Showing <span className='font-semibold'>{doctorsData.length}</span> doctor for {valueType} , for {valueOrgan} </p>
+                  <p className='text-[17px]'>Showing <span className='font-bold text-[#101426CC]'>{doctorsData.length}</span> doctors for <span className='font-bold capitalize text-[#101426CC]'>{valueType} , {valueOrgan}</span> </p>
                   </div>
                   {/* HW Filter Top Right */}
                   <div className='flex items-center gap-5'>
@@ -459,7 +455,7 @@ export default function ApiData() {
                           )}
                         </div>
 
-                          {filteredResults.map((item, index) => (
+                          {filteredResults.map((item,doctor, index) => (
                           <div 
                             onClick={() => {
                               handleItemClick(item.id);
