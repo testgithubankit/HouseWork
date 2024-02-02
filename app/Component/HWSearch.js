@@ -452,7 +452,7 @@ const HWSearch = () => {
   const [searchedZipCodes, setSearchedZipCodes] = useState([]);
   const [selectedZipCodes, setSelectedZipCodes] = useState([]);
   const [counters, setCounters] = useState({});
-  const [zipCodes, setZipCodes] = useState(" ");
+  const [zipCodes, setZipCodes] = useState([]);
 
   const [loadingZip, setLoadingZip] = useState(false);
   const [doctorDataFetched, setDoctorDataFetched] = useState(false);
@@ -663,7 +663,6 @@ const HWSearch = () => {
 
   const handleInputChange = (e) => {
     const input = e.target.value;
-    console.log("adde ZipCode is - : ",input)
     setSelectedZip(input);
 
     if (/^\d{1,5}$/.test(input)) {
@@ -839,36 +838,36 @@ const HWSearch = () => {
                   noValidate
                   autoComplete="off"
                 >
-                  <input
-  className="relative bg-[#f7f9fc] sm:max-w-[210px] h-[48px] max-w-[145px] rounded-md p-3 shadow-none focus:shadow-none"
-  type="text"
-  id="outlined-basic"
-  placeholder="Select ZIP Codes"
-  variant="outlined"
-  value={selectedZip}
-  onChange={handleInputChange}
-  onFocus={handleInputFocus}
-  style={{
-    border: selectedZip === 'input' ? '1px solid #C5CEE0' : '1px solid rgb(197, 206, 224)',
-    position: 'relative', // Ensure proper positioning
-  }}
-/>
+            <input
+              className="relative bg-[#f7f9fc] sm:max-w-[210px] h-[48px] max-w-[145px] rounded-md p-3 shadow-none focus:shadow-none"
+              type="text"
+              id="outlined-basic"
+              placeholder="Select ZIP Codes"
+              variant="outlined"
+              value={selectedZip}
+              onChange={handleInputChange}
+              onFocus={handleInputFocus}
+              style={{
+                border: selectedZip === 'input' ? '1px solid #C5CEE0' : '1px solid rgb(197, 206, 224)',
+                position: 'relative', // Ensure proper positioning
+              }}
+              />
 
-{loadingZip && !apiDataLoaded && (
-  <div style={{ position: 'absolute', top: '38%', left: '60%', transform: 'translate(-50%, -50%)' }}>
-    {/* {selectedMutiple === "Doctor" && (
-      <p>Loading Doctor data...</p>
-    )} */}
-    {/* {selectedMutiple === "Hospital" && (
-      // <p>Loading Hospital data...</p>
-    )} */}
-    <ClipLoader
-      color={"#123abc"}
-      size={10}
-      loading={true}
-    />
-  </div>
-)}
+              {loadingZip && !apiDataLoaded && (
+                <div style={{ position: 'absolute', top: '38%', left: '60%', transform: 'translate(-50%, -50%)' }}>
+                  {/* {selectedMutiple === "Doctor" && (
+                    <p>Loading Doctor data...</p>
+                  )} */}
+                  {/* {selectedMutiple === "Hospital" && (
+                    // <p>Loading Hospital data...</p>
+                  )} */}
+                  <ClipLoader
+                    color={"#123abc"}
+                    size={10}
+                    loading={true}
+                  />
+                </div>
+              )}
                   <RiSearchLine className="absolute left-[182px] top-3.5 text-xl text-[#8f9bb3] w-4" />
                   {searchedZipCodes.length > 0 && (
                     <ul className="w-[170px] h-[200px] bg-[#fff] shadow absolute z-40 rounded-md border-slate-500 bg-[#f9f9f9] overflow-scroll">
@@ -1025,7 +1024,7 @@ const HWSearch = () => {
           href={{
             pathname: searchFor === 'Doctor' ? '/SearchResult' : '/Searchresults',
             query: {
-              search: `type=${type}&searchFor=${searchFor}&organ=${organ}&zip_code=${selectedZip}`,
+              search: `type=${type}&searchFor=${searchFor}&organ=${organ}`,
             },
           }}
         >
