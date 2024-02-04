@@ -20,7 +20,7 @@ import { type } from 'os';
 
 async function fetchDoctors(type, organ,zipCode) {
   try {
-    const apiUrl = `https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}&zip_codes=${zipCode}`;
+    const apiUrl = `https://api.coc.houseworksinc.co/api/v1/doctors/?type=${type}&organ=${organ}`;
     const response = await fetch(apiUrl);
     const result = await response.json();
     console.log(result);

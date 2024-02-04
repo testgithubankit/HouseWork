@@ -1025,7 +1025,7 @@ const HWSearch = () => {
           href={{
             pathname: searchFor === 'Doctor' ? '/SearchResult' : '/Searchresults',
             query: {
-              search: `type=${type}&searchFor=${searchFor}${searchFor === 'Doctor' ? `&organ=${organ}` : ''}&zip_code=${selectedZip}`,
+              search: `type=${type}&searchFor=${searchFor}${searchFor === 'Doctor' ? `&organ=${organ}` : ''}`,
             },
           }}
         >
