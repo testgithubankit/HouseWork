@@ -20,9 +20,6 @@ const TrendingSlider = () => {
       button_url: "#",
     },
   ];
-
-  
-
   return (
     <div className="box">
       <Carousel 

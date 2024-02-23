@@ -35,4 +35,4 @@ const SearchSlider = () => {
   );
 };
 
-export default SearchSlider
+export default SearchSlider;
